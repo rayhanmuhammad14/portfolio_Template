@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-forest">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nama Anda | Desainer & Developer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Playfair+Display:wght@800&display=swap');
+
+        /* --- DEFINISI PALET WARNA --- */
+        :root {
+            --aurora-bg-start: #1a0a33;
+            --aurora-bg-end: #0a1c33;
+            --aurora-text: #E0E0E0;
+            --aurora-accent1: #FFD700;
+            --aurora-accent2: #9B59B6;
+            --aurora-card: rgba(30, 10, 50, 0.7);
+            --aurora-border: rgba(255, 255, 255, 0.1);
+            --aurora-backdrop-filter: blur(10px) saturate(1.8);
+            --forest-bg-start: #ECEBE4;
+            --forest-bg-end: #DCDCDC;
+            --forest-text: #3A4739;
+            --forest-accent1: #6B8E23;
+            --forest-accent2: #A0522D;
+            --forest-card: rgba(255, 255, 255, 0.8);
+            --forest-border: rgba(58, 71, 57, 0.15);
+            --forest-backdrop-filter: blur(8px) saturate(1.5);
+            --techno-bg-start: #000000;
+            --techno-bg-end: #1A1A1A;
+            --techno-text: #00FFC0;
+            --techno-accent1: #FF0077;
+            --techno-accent2: #00FFFF;
+            --techno-card: rgba(10, 0, 30, 0.8);
+            --techno-border: rgba(0, 255, 255, 0.2);
+            --techno-backdrop-filter: blur(12px) brightness(1.2);
+            --zen-bg-start: #F8F8F8;
+            --zen-bg-end: #F0F0F0;
+            --zen-text: #333333;
+            --zen-accent1: #A34A28;
+            --zen-accent2: #4F6D7A;
+            --zen-card: rgba(255, 255, 255, 0.9);
+            --zen-border: rgba(51, 51, 51, 0.1);
+            --zen-backdrop-filter: blur(6px);
+            --ocean-bg-start: #E0F2F7;
+            --ocean-bg-end: #C8EAF4;
+            --ocean-text: #003366;
+            --ocean-accent1: #007ACC;
+            --ocean-accent2: #66CCFF;
+            --ocean-card: rgba(255, 255, 255, 0.85);
+            --ocean-border: rgba(0, 51, 102, 0.1);
+            --ocean-backdrop-filter: blur(7px) brightness(1.1);
+            --transition-speed: 0.5s;
+        }
+
+        /* --- Menerapkan Variabel ke Tema Aktif --- */
+        html {
+            --bg-color-main: linear-gradient(135deg, var(--aurora-bg-start), var(--aurora-bg-end));
+            --text-color: var(--aurora-text);
+            --accent-color: var(--aurora-accent1);
+            --accent-color-2: var(--aurora-accent2);
+            --card-bg: var(--aurora-card);
+            --border-color: var(--aurora-border);
+            --backdrop-filter-value: var(--aurora-backdrop-filter);
+        }
+
+        html.theme-forest {
+            --bg-color-main: linear-gradient(135deg, var(--forest-bg-start), var(--forest-bg-end));
+            --text-color: var(--forest-text);
+            --accent-color: var(--forest-accent1);
+            --accent-color-2: var(--forest-accent2);
+            --card-bg: var(--forest-card);
+            --border-color: var(--forest-border);
+            --backdrop-filter-value: var(--forest-backdrop-filter);
+        }
+
+        html.theme-techno {
+            --bg-color-main: linear-gradient(135deg, var(--techno-bg-start), var(--techno-bg-end));
+            --text-color: var(--techno-text);
+            --accent-color: var(--techno-accent1);
+            --accent-color-2: var(--techno-accent2);
+            --card-bg: var(--techno-card);
+            --border-color: var(--techno-border);
+            --backdrop-filter-value: var(--techno-backdrop-filter);
+        }
+
+        html.theme-zen {
+            --bg-color-main: linear-gradient(135deg, var(--zen-bg-start), var(--zen-bg-end));
+            --text-color: var(--zen-text);
+            --accent-color: var(--zen-accent1);
+            --accent-color-2: var(--zen-accent2);
+            --card-bg: var(--zen-card);
+            --border-color: var(--zen-border);
+            --backdrop-filter-value: var(--zen-backdrop-filter);
+        }
+
+        html.theme-ocean {
+            --bg-color-main: linear-gradient(135deg, var(--ocean-bg-start), var(--ocean-bg-end));
+            --text-color: var(--ocean-text);
+            --accent-color: var(--ocean-accent1);
+            --accent-color-2: var(--ocean-accent2);
+            --card-bg: var(--ocean-card);
+            --border-color: var(--ocean-border);
+            --backdrop-filter-value: var(--ocean-backdrop-filter);
+        }
+
+        /* --- Pengaturan Global & Transisi --- */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, border-color var(--transition-speed) ease, fill var(--transition-speed) ease, box-shadow var(--transition-speed) ease, backdrop-filter var(--transition-speed) ease, transform 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-image: var(--bg-color-main);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            line-height: 1.6;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* --- LAYOUT & JUDUL BAGIAN --- */
+        .container {
+            padding: 0 8%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 120px 0;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            margin-top: 0;
+            margin-bottom: 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-color-2));
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+        }
+
+        /* --- HEADER & NAVIGASI --- */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .main-header.scrolled {
+            background-color: var(--card-bg);
+            backdrop-filter: var(--backdrop-filter-value);
+            -webkit-backdrop-filter: var(--backdrop-filter-value);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .main-header .logo {
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .desktop-nav {
+            display: flex;
+            gap: 40px;
+        }
+
+        .desktop-nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 400;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .desktop-nav a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-color-2));
+            bottom: 0;
+            left: 0;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease-out;
+        }
+
+        .desktop-nav a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* --- PALETTE SWITCHER --- */
+        .palette-switcher {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1001;
+        }
+
+        .palette-button {
+            width: 45px;
+            height: 45px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            backdrop-filter: var(--backdrop-filter-value);
+            -webkit-backdrop-filter: var(--backdrop-filter-value);
+        }
+
+        .palette-button svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--text-color);
+        }
+
+        .palette-options {
+            position: absolute;
+            bottom: 60px;
+            right: 0;
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            display: flex;
+            gap: 10px;
+            backdrop-filter: var(--backdrop-filter-value);
+            -webkit-backdrop-filter: var(--backdrop-filter-value);
+            border: 1px solid var(--border-color);
+            opacity: 0;
+            transform: translateY(10px) scale(0.95);
+            pointer-events: none;
+            transition: all 0.3s ease;
+            transform-origin: bottom right;
+        }
+
+        .palette-switcher.active .palette-options {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+
+        .palette-color {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid var(--border-color);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+        }
+
+        .palette-color.active-theme {
+            border-width: 3px;
+            border-color: var(--accent-color);
+            transform: scale(1.15);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 100px;
+            text-align: center;
+            align-items: center; /* --- DIRAPIKAN --- Menambahkan ini untuk sentralisasi item secara horizontal */
+        }
+
+        .hero-image {
+            width: 280px;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin: 0 auto 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            /* Modifikasi di sini: */
+            border: 8px solid transparent;
+            /* Border transparan sebagai fallback */
+            background: linear-gradient(white, white) padding-box,
+                linear-gradient(135deg, var(--accent-color), var(--accent-color-2)) border-box;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3.5rem, 10vw, 7rem);
+            line-height: 1.1;
+            margin: 0;
+            letter-spacing: -2px;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(90deg, var(--accent-color), var(--accent-color-2));
+            animation: text-gradient-shift 8s ease infinite alternate;
+            font-weight: 800;
+        }
+
+        @keyframes text-gradient-shift {
+            from {
+                background-position: 0% 50%;
+            }
+
+            to {
+                background-position: 100% 50%;
+            }
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 550px;
+            margin-top: 25px;
+            line-height: 1.7;
+            opacity: 0.8;
+            margin-left: auto; /* --- DIRAPIKAN --- Menambahkan ini agar blok paragraf berada di tengah */
+            margin-right: auto; /* --- DIRAPIKAN --- Menambahkan ini agar blok paragraf berada di tengah */
+        }
+
+        /* --- KONTEN LAINNYA --- */
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 40px;
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border-color);
+            align-items: start;
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-date {
+            font-weight: 700;
+            color: var(--accent-color);
+            padding-top: 5px;
+        }
+
+        .timeline-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        .timeline-content h4 {
+            font-size: 1rem;
+            margin: 8px 0;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+
+        .timeline-content p {
+            opacity: 0.8;
+            margin-top: 10px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .skill-item {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            backdrop-filter: var(--backdrop-filter-value);
+            -webkit-backdrop-filter: var(--backdrop-filter-value);
+            border: 1px solid var(--border-color);
+            /* --- DIRAPIKAN --- Menggunakan flexbox untuk penyelarasan sempurna */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .skill-item svg {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 15px;
+            fill: var(--accent-color);
+        }
+
+        .skill-item h4 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        .project-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10%;
+            align-items: flex-start;
+        }
+
+        .project-images {
+            position: sticky;
+            top: 150px;
+            height: 450px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .project-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border: 1px solid var(--border-color);
+        }
+
+        .project-image.active {
+            opacity: 1;
+        }
+
+        .project-descriptions {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-item {
+            padding: 50px 0;
+            border-top: 1px solid var(--border-color);
+            min-height: 40vh;
+        }
+
+        .project-item:first-child {
+            border-top: none;
+        }
+
+        .project-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-top: 0;
+        }
+
+        .project-item p {
+            opacity: 0.8;
+        }
+
+        .project-item a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contact {
+            text-align: center;
+        }
+
+        .contact p {
+            max-width: 600px;
+            margin: 20px auto 40px auto;
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        .contact-button {
+            display: inline-block;
+            background-image: linear-gradient(90deg, var(--accent-color), var(--accent-color-2));
+            color: #1a0a33;
+            padding: 18px 40px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        html.theme-forest .contact-button,
+        html.theme-zen .contact-button,
+        html.theme-ocean .contact-button {
+            color: #FFFFFF;
+        }
+
+        .contact-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.25);
+            transform: skewX(-30deg);
+            transition: left 0.7s ease;
+        }
+
+        .contact-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-button:hover::before {
+            left: 100%;
+        }
+
+        /* --- FOOTER --- */
+        .main-footer {
+            padding: 80px 8%;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-top: 1px solid var(--border-color);
+            backdrop-filter: var(--backdrop-filter-value);
+            -webkit-backdrop-filter: var(--backdrop-filter-value);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-column h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-column a,
+        .footer-column p {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-bottom: 10px;
+            display: block;
+            opacity: 0.7;
+        }
+
+        .footer-column a:hover {
+            opacity: 1;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-socials a svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--text-color);
+        }
+
+        .footer-socials a:hover svg {
+            fill: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        .footer-bottom {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            opacity: 0.6;
+        }
+
+        /* --- ANIMASI & RESPONSIVITAS --- */
+        .stagger-animation>* {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 5%;
+            }
+
+            section {
+                padding: 80px 0;
+            }
+
+            .main-header {
+                padding: 15px 5%;
+            }
+
+            .main-header .desktop-nav {
+                display: none;
+            }
+
+            .hero {
+                text-align: center;
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .project-list {
+                grid-template-columns: 1fr;
+            }
+
+            .project-images {
+                display: none;
+            }
+
+            .project-item {
+                min-height: auto;
+                padding: 40px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="main-header">
+        <a href="#hero" class="logo">NA</a>
+        <nav class="desktop-nav">
+            <a href="#experience">Pengalaman</a>
+            <a href="#education">Pendidikan</a>
+            <a href="#projects">Karya</a>
+            <a href="#contact">Kontak</a>
+        </nav>
+    </header>
+
+    <div class="palette-switcher">
+        <div class="palette-options">
+            <div class="palette-color" data-theme="theme-aurora"
+                style="background: linear-gradient(45deg, var(--aurora-bg-start), var(--aurora-bg-end));"
+                title="Aurora Dusk"></div>
+            <div class="palette-color" data-theme="theme-forest"
+                style="background: linear-gradient(45deg, var(--forest-bg-start), var(--forest-bg-end));"
+                title="Forest Whisper"></div>
+            <div class="palette-color" data-theme="theme-techno"
+                style="background: linear-gradient(45deg, var(--techno-bg-start), var(--techno-bg-end));"
+                title="Techno Flux"></div>
+            <div class="palette-color" data-theme="theme-zen"
+                style="background: linear-gradient(45deg, var(--zen-bg-start), var(--zen-bg-end));" title="Zen Garden">
+            </div>
+            <div class="palette-color" data-theme="theme-ocean"
+                style="background: linear-gradient(45deg, var(--ocean-bg-start), var(--ocean-bg-end));"
+                title="Ocean Breeze"></div>
+        </div>
+        <div class="palette-button">
+            <svg viewBox="0 0 24 24">
+                <path
+                    d="M17.5,12A5.5,5.5 0 0,1 12,17.5A5.5,5.5 0 0,1 6.5,12A5.5,5.5 0 0,1 12,6.5A5.5,5.5 0 0,1 17.5,12M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2Z" />
+            </svg>
+        </div>
+    </div>
+
+    <div class="container">
+        <header id="hero" class="hero stagger-animation">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80&fit=crop&crop=faces"
+                alt="Foto profil Anda" class="hero-image" style="transition-delay: 0s;">
+            <h1 style="transition-delay: 0.1s;">Nama Anda</h1>
+            <p style="transition-delay: 0.2s;">Saya seorang desainer produk dan pengembang front-end dari Makassar,
+                dengan fokus pada pengalaman pengguna yang bersih, sederhana, dan interaktif.</p>
+        </header>
+
+        <main>
+            <section id="experience" class="timeline stagger-animation">
+                <h2 class="section-title">Riwayat Pengalaman</h2>
+                <div class="timeline-item">
+                    <div class="timeline-date">2023 - Sekarang</div>
+                    <div class="timeline-content">
+                        <h3>Frontend Developer</h3>
+                        <h4>Perusahaan Teknologi Maju, Jakarta</h4>
+                        <p>Mengembangkan dan memelihara antarmuka pengguna untuk aplikasi web SaaS menggunakan React dan
+                            TypeScript. Berkolaborasi erat dengan tim desain dan produk untuk memastikan implementasi
+                            yang presisi dan fungsional.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2021 - 2023</div>
+                    <div class="timeline-content">
+                        <h3>UI/UX Designer</h3>
+                        <h4>Startup Kreatif, Bandung</h4>
+                        <p>Merancang alur pengguna, wireframe, dan prototipe interaktif untuk aplikasi mobile. Melakukan
+                            riset pengguna untuk menginformasikan keputusan desain.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="education" class="timeline stagger-animation">
+                <h2 class="section-title">Pendidikan</h2>
+                <div class="timeline-item">
+                    <div class="timeline-date">2017 - 2021</div>
+                    <div class="timeline-content">
+                        <h3>Sarjana Desain Komunikasi Visual</h3>
+                        <h4>Universitas Hasanuddin, Makassar</h4>
+                        <p>Fokus pada desain digital, interaksi manusia-komputer, dan branding. Lulus dengan predikat
+                            Cum Laude.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="skills" class="skills stagger-animation">
+                <h2 class="section-title">Keahlian</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M9.75 22.15h4.5c.41 0 .75-.34.75-.75V18.5a.75.75 0 00-.75-.75h-4.5a.75.75 0 00-.75.75v2.9c0 .41.34.75.75.75zm0-8.9h4.5c.41 0 .75-.34.75-.75V9.6a.75.75 0 00-.75-.75h-4.5a.75.75 0 00-.75.75v2.9c0 .41.34.75.75.75zm0-8.9h4.5c.41 0 .75-.34.75-.75V.75a.75.75 0 00-.75-.75h-4.5A.75.75 0 009 .75v2.9c0 .41.34.75.75.75zM3 14.85h4.5c.41 0 .75-.34.75-.75V11.2a.75.75 0 00-.75-.75H3a.75.75 0 00-.75.75v2.9c0 .41.34.75.75.75zm13.5 0h4.5c.41 0 .75-.34.75-.75V11.2a.75.75 0 00-.75-.75h-4.5a.75.75 0 00-.75.75v2.9c0 .41.34.75.75.75z" />
+                        </svg>
+                        <h4>UI/UX Design</h4>
+                    </div>
+                    <div class="skill-item">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M22.5 19.5h-3v-3.88a1.62 1.62 0 00-1.62-1.62 1.62 1.62 0 00-1.62 1.62V19.5h-3V8.25h3v1.47a3.75 3.75 0 013.24-1.72C21.05 8 22.5 9.46 22.5 12.01V19.5zM1.5 19.5h3V8.25h-3V19.5zM3 6.75A1.87 1.87 0 114.88 4.88 1.88 1.88 0 013 6.75z" />
+                        </svg>
+                        <h4>JavaScript</h4>
+                    </div>
+                    <div class="skill-item">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M11.62 11.27c-1-2.12-3.23-2.9-5.35-1.92-2.13.99-2.92 3.23-1.93 5.35.98 2.12 3.23 2.9 5.35 1.92 2.12-.99 2.91-3.23 1.93-5.35zm5.55-5.23c-2.12-.99-4.36-.2-5.35 1.92L10 5.43c-1.3-1.3-3.06-2.1-5.02-2.1-3.87 0-7 3.13-7 7s3.13 7 7 7c1.96 0 3.72-.8 5.02-2.1l1.83 2.53c.98 2.12 3.23 2.91 5.35 1.93 2.12-.98 2.9-3.23 1.92-5.35-.98-2.12-3.23-2.9-5.35-1.92-1.25.58-2.07 1.85-2.07 3.28 0 1.43.82 2.7 2.07 3.28 2.12.98 4.37.2 5.35-1.92.99-2.12.2-4.37-1.92-5.35z" />
+                        </svg>
+                        <h4>React.js</h4>
+                    </div>
+                    <div class="skill-item">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12.87 15.23a.75.75 0 00-1.06-1.06L9.62 16.36V7.75a.75.75 0 00-1.5 0v8.61l-2.19-2.19a.75.75 0 00-1.06 1.06l3.5 3.5a.75.75 0 001.06 0l3.5-3.5zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <h4>Figma</h4>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects" class="projects">
+                <h2 class="section-title stagger-animation">Karya Pilihan</h2>
+                <div class="project-list">
+                    <div class="project-images">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80"
+                            class="project-image active" data-index="0" alt="Gambar Proyek Alpha">
+                        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&q=80"
+                            class="project-image" data-index="1" alt="Gambar Proyek Beta">
+                        <img src="https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?w=800&q=80"
+                            class="project-image" data-index="2" alt="Gambar Proyek Gamma">
+                    </div>
+                    <div class="project-descriptions stagger-animation">
+                        <div class="project-item" data-index="0">
+                            <h3>Project Alpha</h3>
+                            <p>Sebuah platform e-commerce dengan desain minimalis dan pengalaman pengguna yang mulus.
+                                Fokus pada navigasi yang intuitif dan proses checkout yang cepat.</p>
+                            <a href="#" title="Tautan ke studi kasus atau live demo">Lihat Studi Kasus</a>
+                        </div>
+                        <div class="project-item" data-index="1">
+                            <h3>Project Beta</h3>
+                            <p>Website portofolio untuk seorang fotografer, berfokus pada galeri gambar yang imersif dan
+                                animasi transisi yang elegan untuk menonjolkan karya visualnya.</p>
+                            <a href="#" title="Tautan ke studi kasus atau live demo">Lihat Studi Kasus</a>
+                        </div>
+                        <div class="project-item" data-index="2">
+                            <h3>Project Gamma</h3>
+                            <p>Eksperimen visual interaktif menggunakan WebGL untuk menciptakan pengalaman 3D yang unik
+                                di dalam browser.</p>
+                            <a href="#" title="Tautan ke studi kasus atau live demo">Lihat Studi Kasus</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="contact stagger-animation">
+                <h2 class="section-title">Hubungi Saya</h2>
+                <p>Saya selalu terbuka untuk proyek baru, kolaborasi, atau sekadar mengobrol tentang desain dan
+                    teknologi. Jangan ragu untuk menghubungi!</p>
+                <a href="mailto:halo@namakamu.com" class="contact-button">Kirim Email</a>
+            </section>
+        </main>
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h4>Nama Anda</h4>
+                <p>Desainer & Developer Kreatif yang bersemangat menciptakan produk digital yang indah dan fungsional.
+                </p>
+            </div>
+            <div class="footer-column">
+                <h4>Navigasi</h4>
+                <a href="#hero">Beranda</a>
+                <a href="#experience">Pengalaman</a>
+                <a href="#projects">Karya</a>
+                <a href="#contact">Kontak</a>
+            </div>
+            <div class="footer-column">
+                <h4>Media Sosial</h4>
+                <div class="footer-socials">
+                    <a href="#" target="_blank" title="LinkedIn"><svg viewBox="0 0 24 24">
+                            <path
+                                d="M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19M18.5,18.5V13.2A3.26,3.26 0 0,0 15.24,9.94C14.39,9.94 13.4,10.43 12.92,11.24V10.13H10.13V18.5H12.92V13.57C12.92,12.8 13.54,12.17 14.31,12.17C15.08,12.17 15.71,12.8 15.71,13.57V18.5H18.5M6.88,8.56A1.68,1.68 0 0,0 8.56,6.88C8.56,6 8,5.44 7.21,5.44C6.42,5.44 5.86,6 5.86,6.88C5.86,7.73 6.42,8.29 7.21,8.29H7.21L7.22,8.56M8.56,18.5V10.13H5.86V18.5H8.56Z" />
+                        </svg></a>
+                    <a href="#" target="_blank" title="GitHub"><svg viewBox="0 0 24 24">
+                            <path
+                                d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.73C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z" />
+                        </svg></a>
+                    <a href="#" target="_blank" title="Instagram"><svg viewBox="0 0 24 24">
+                            <path
+                                d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
+                        </svg></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 Nama Anda. Dibuat dengan sepenuh hati di Makassar.
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- PALETTE SWITCHER (Single Click) ---
+            const paletteSwitcher = document.querySelector('.palette-switcher');
+            const paletteButton = document.querySelector('.palette-button');
+
+            paletteButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                paletteSwitcher.classList.toggle('active');
+            });
+
+            document.addEventListener('click', (event) => {
+                if (!paletteSwitcher.contains(event.target)) {
+                    paletteSwitcher.classList.remove('active');
+                }
+            });
+
+            // --- LOGIKA PERGANTIAN TEMA ---
+            const doc = document.documentElement;
+            const paletteOptions = document.querySelectorAll('.palette-color');
+
+            const applyTheme = (themeClass) => {
+                doc.className = themeClass;
+                localStorage.setItem('portfolioTheme', themeClass);
+
+                // Menghapus kelas aktif dari semua pilihan
+                paletteOptions.forEach(opt => opt.classList.remove('active-theme'));
+                // Menambahkan kelas aktif ke pilihan yang sesuai
+                const activeSwatch = document.querySelector(`.palette-color[data-theme="${themeClass}"]`);
+                if (activeSwatch) {
+                    activeSwatch.classList.add('active-theme');
+                }
+
+                // Menutup palet setelah memilih, dengan sedikit jeda agar terlihat
+                setTimeout(() => paletteSwitcher.classList.remove('active'), 100);
+            };
+
+            paletteOptions.forEach(option => {
+                option.addEventListener('click', (e) => applyTheme(e.target.dataset.theme));
+            });
+
+            const savedTheme = localStorage.getItem('portfolioTheme') || 'theme-forest';
+            applyTheme(savedTheme);
+
+            // --- HEADER SCROLLED ---
+            const header = document.querySelector('.main-header');
+            window.addEventListener('scroll', () => {
+                header.classList.toggle('scrolled', window.scrollY > 50);
+            });
+
+            // --- PROYEK STICKY IMAGE (Hanya di layar besar) ---
+            if (window.matchMedia("(min-width: 769px)").matches) {
+                const projectItems = document.querySelectorAll('.project-item');
+                const projectImages = document.querySelectorAll('.project-image');
+                const projectObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const index = entry.target.dataset.index;
+                            projectImages.forEach(img => img.classList.remove('active'));
+                            const activeImg = document.querySelector(`.project-image[data-index='${index}']`);
+                            if (activeImg) activeImg.classList.add('active');
+                        }
+                    });
+                }, { threshold: 0.6, rootMargin: "-30% 0px -30% 0px" });
+                projectItems.forEach(item => projectObserver.observe(item));
+            }
+
+            // --- STAGGER ANIMATION ---
+            const staggerObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const elements = entry.target.children;
+                        for (let i = 0; i < elements.length; i++) {
+                            elements[i].style.transitionDelay = `${i * 120}ms`;
+                            elements[i].style.opacity = '1';
+                            elements[i].style.transform = 'translateY(0)';
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.stagger-animation').forEach(el => staggerObserver.observe(el));
+        });
+    </script>
+</body>
+
+</html>
