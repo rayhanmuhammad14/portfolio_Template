@@ -8,11 +8,16 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Playfair+Display:wght@800&display=swap');
 
-        /* --- DEFINISI PALET WARNA --- */
+        /* ==============================================
+        VARIABLES & THEME DEFINITIONS
+        ==============================================
+        */
+
+        /* Mendefinisikan palet warna untuk setiap tema yang tersedia. */
         :root {
             --aurora-bg-start: #1a0a33;
             --aurora-bg-end: #0a1c33;
-            --aurora-text: #E0E0E0;
+            --aurora-text: #E0E0EO;
             --aurora-accent1: #FFD700;
             --aurora-accent2: #9B59B6;
             --aurora-card: rgba(30, 10, 50, 0.7);
@@ -53,7 +58,7 @@
             --transition-speed: 0.5s;
         }
 
-        /* --- Menerapkan Variabel ke Tema Aktif --- */
+        /* Variabel generik yang akan mengambil nilai dari tema yang aktif. */
         html {
             --bg-color-main: linear-gradient(135deg, var(--aurora-bg-start), var(--aurora-bg-end));
             --text-color: var(--aurora-text);
@@ -64,6 +69,7 @@
             --backdrop-filter-value: var(--aurora-backdrop-filter);
         }
 
+        /* Mendefinisikan ulang variabel generik berdasarkan kelas tema pada tag <html>. */
         html.theme-forest {
             --bg-color-main: linear-gradient(135deg, var(--forest-bg-start), var(--forest-bg-end));
             --text-color: var(--forest-text);
@@ -104,7 +110,11 @@
             --backdrop-filter-value: var(--ocean-backdrop-filter);
         }
 
-        /* --- Pengaturan Global & Transisi --- */
+        /* ==============================================
+        GLOBAL STYLES
+        ==============================================
+        */
+
         *,
         *::before,
         *::after {
@@ -126,7 +136,11 @@
             overflow-x: hidden;
         }
 
-        /* --- LAYOUT & JUDUL BAGIAN --- */
+        /* ==============================================
+        LAYOUT & COMPONENTS
+        ==============================================
+        */
+
         .container {
             padding: 0 8%;
             max-width: 1200px;
@@ -158,7 +172,7 @@
             border-radius: 5px;
         }
 
-        /* --- HEADER & NAVIGASI --- */
+        /* --- Header --- */
         .main-header {
             position: fixed;
             top: 0;
@@ -200,6 +214,7 @@
             padding-bottom: 8px;
         }
 
+        /* Efek underline pada navigasi yang muncul dari kanan ke kiri. */
         .desktop-nav a::after {
             content: '';
             position: absolute;
@@ -209,16 +224,16 @@
             bottom: 0;
             left: 0;
             transform: scaleX(0);
-            transform-origin: right;
+            transform-origin: right; /* Awal animasi dari sisi kanan */
             transition: transform 0.4s ease-out;
         }
 
         .desktop-nav a:hover::after {
             transform: scaleX(1);
-            transform-origin: left;
+            transform-origin: left; /* Akhir animasi di sisi kiri */
         }
 
-        /* --- PALETTE SWITCHER --- */
+        /* --- Palette Switcher --- */
         .palette-switcher {
             position: fixed;
             bottom: 20px;
@@ -288,15 +303,15 @@
             transform: scale(1.15);
         }
 
-        /* --- HERO SECTION --- */
+        /* --- Hero Section --- */
         .hero {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center;
             padding-top: 100px;
             text-align: center;
-            align-items: center; /* --- DIRAPIKAN --- Menambahkan ini untuk sentralisasi item secara horizontal */
         }
 
         .hero-image {
@@ -306,9 +321,10 @@
             border-radius: 50%;
             margin: 0 auto 40px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            /* Modifikasi di sini: */
             border: 8px solid transparent;
-            /* Border transparan sebagai fallback */
+            /* Teknik untuk membuat border gradien:
+            Layer 1 (background putih) mengisi area padding.
+            Layer 2 (gradien) mengisi area border. */
             background: linear-gradient(white, white) padding-box,
                 linear-gradient(135deg, var(--accent-color), var(--accent-color-2)) border-box;
             background-repeat: no-repeat;
@@ -321,6 +337,7 @@
             line-height: 1.1;
             margin: 0;
             letter-spacing: -2px;
+            /* Teknik untuk membuat teks gradien. */
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
@@ -342,14 +359,12 @@
         .hero p {
             font-size: 1.25rem;
             max-width: 550px;
-            margin-top: 25px;
+            margin: 25px auto 0 auto;
             line-height: 1.7;
             opacity: 0.8;
-            margin-left: auto; /* --- DIRAPIKAN --- Menambahkan ini agar blok paragraf berada di tengah */
-            margin-right: auto; /* --- DIRAPIKAN --- Menambahkan ini agar blok paragraf berada di tengah */
         }
 
-        /* --- KONTEN LAINNYA --- */
+        /* --- Timeline (Experience & Education) --- */
         .timeline-item {
             display: grid;
             grid-template-columns: 1fr 3fr;
@@ -387,6 +402,7 @@
             margin-top: 10px;
         }
 
+        /* --- Skills --- */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -401,7 +417,6 @@
             backdrop-filter: var(--backdrop-filter-value);
             -webkit-backdrop-filter: var(--backdrop-filter-value);
             border: 1px solid var(--border-color);
-            /* --- DIRAPIKAN --- Menggunakan flexbox untuk penyelarasan sempurna */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -426,6 +441,7 @@
             font-weight: 400;
         }
 
+        /* --- Projects --- */
         .project-list {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -433,6 +449,7 @@
             align-items: flex-start;
         }
 
+        /* Gambar proyek dibuat 'sticky' agar tetap terlihat saat deskripsi di-scroll. */
         .project-images {
             position: sticky;
             top: 150px;
@@ -487,6 +504,7 @@
             font-weight: bold;
         }
 
+        /* --- Contact --- */
         .contact {
             text-align: center;
         }
@@ -518,6 +536,7 @@
             color: #FFFFFF;
         }
 
+        /* Efek kilat (shine) pada tombol saat di-hover. */
         .contact-button::before {
             content: '';
             position: absolute;
@@ -539,7 +558,7 @@
             left: 100%;
         }
 
-        /* --- FOOTER --- */
+        /* --- Footer --- */
         .main-footer {
             padding: 80px 8%;
             background-color: rgba(0, 0, 0, 0.1);
@@ -597,13 +616,19 @@
             opacity: 0.6;
         }
 
-        /* --- ANIMASI & RESPONSIVITAS --- */
+        /* ==============================================
+        ANIMATIONS & RESPONSIVE DESIGN
+        ==============================================
+        */
+
+        /* Base style untuk elemen yang akan dianimasikan saat scroll. */
         .stagger-animation>* {
             opacity: 0;
             transform: translateY(30px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
 
+        /* Penyesuaian layout untuk layar tablet dan di bawahnya. */
         @media (max-width: 768px) {
             .container {
                 padding: 0 5%;
@@ -618,7 +643,7 @@
             }
 
             .main-header .desktop-nav {
-                display: none;
+                display: none; /* Sembunyikan navigasi desktop, akan diganti menu mobile. */
             }
 
             .hero {
@@ -640,7 +665,7 @@
             }
 
             .project-images {
-                display: none;
+                display: none; /* Sembunyikan gambar sticky pada mobile untuk menghemat ruang. */
             }
 
             .project-item {
@@ -850,59 +875,78 @@
     </footer>
 
     <script>
+        /**
+         * Event listener ini memastikan semua skrip dijalankan setelah
+         * seluruh struktur DOM selesai dimuat oleh browser.
+         */
         document.addEventListener('DOMContentLoaded', () => {
-            // --- PALETTE SWITCHER (Single Click) ---
+
+            // --- Fungsionalitas Theme Switcher ---
             const paletteSwitcher = document.querySelector('.palette-switcher');
             const paletteButton = document.querySelector('.palette-button');
 
             paletteButton.addEventListener('click', (event) => {
+                // Mencegah event 'click' menyebar ke document
                 event.stopPropagation();
                 paletteSwitcher.classList.toggle('active');
             });
 
+            // Menutup dropdown palet jika pengguna mengklik di luar areanya.
             document.addEventListener('click', (event) => {
                 if (!paletteSwitcher.contains(event.target)) {
                     paletteSwitcher.classList.remove('active');
                 }
             });
 
-            // --- LOGIKA PERGANTIAN TEMA ---
             const doc = document.documentElement;
             const paletteOptions = document.querySelectorAll('.palette-color');
 
+            /**
+             * Menerapkan kelas tema ke tag <html>, menyimpannya ke localStorage,
+             * dan menandai pilihan warna yang aktif.
+             * @param {string} themeClass - Nama kelas tema (e.g., 'theme-forest').
+             */
             const applyTheme = (themeClass) => {
                 doc.className = themeClass;
+                // Menyimpan tema agar konsisten saat halaman dimuat ulang.
                 localStorage.setItem('portfolioTheme', themeClass);
 
-                // Menghapus kelas aktif dari semua pilihan
                 paletteOptions.forEach(opt => opt.classList.remove('active-theme'));
-                // Menambahkan kelas aktif ke pilihan yang sesuai
                 const activeSwatch = document.querySelector(`.palette-color[data-theme="${themeClass}"]`);
                 if (activeSwatch) {
                     activeSwatch.classList.add('active-theme');
                 }
-
-                // Menutup palet setelah memilih, dengan sedikit jeda agar terlihat
+                
                 setTimeout(() => paletteSwitcher.classList.remove('active'), 100);
             };
 
             paletteOptions.forEach(option => {
                 option.addEventListener('click', (e) => applyTheme(e.target.dataset.theme));
             });
-
+            
+            // Memuat tema dari localStorage saat halaman pertama kali dibuka.
             const savedTheme = localStorage.getItem('portfolioTheme') || 'theme-forest';
             applyTheme(savedTheme);
 
-            // --- HEADER SCROLLED ---
+
+            // --- Efek Latar Belakang Header saat Scroll ---
             const header = document.querySelector('.main-header');
             window.addEventListener('scroll', () => {
+                // Menambah kelas 'scrolled' jika posisi scroll lebih dari 50px dari atas.
                 header.classList.toggle('scrolled', window.scrollY > 50);
             });
 
-            // --- PROYEK STICKY IMAGE (Hanya di layar besar) ---
+
+            /**
+             * --- Logika Animasi Gambar Proyek ---
+             * Menggunakan IntersectionObserver untuk mendeteksi deskripsi proyek mana yang
+             * sedang terlihat di viewport dan mengaktifkan gambar yang sesuai.
+             * Hanya aktif di layar desktop (lebar > 768px).
+             */
             if (window.matchMedia("(min-width: 769px)").matches) {
                 const projectItems = document.querySelectorAll('.project-item');
                 const projectImages = document.querySelectorAll('.project-image');
+                
                 const projectObserver = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
@@ -912,24 +956,41 @@
                             if (activeImg) activeImg.classList.add('active');
                         }
                     });
-                }, { threshold: 0.6, rootMargin: "-30% 0px -30% 0px" });
+                }, { 
+                    // Opsi: 60% dari elemen harus terlihat, dan area deteksi dipersempit
+                    // 30% dari atas dan bawah untuk transisi yang lebih pas di tengah layar.
+                    threshold: 0.6, 
+                    rootMargin: "-30% 0px -30% 0px" 
+                });
+
                 projectItems.forEach(item => projectObserver.observe(item));
             }
 
-            // --- STAGGER ANIMATION ---
+
+            /**
+             * --- Logika Animasi Stagger (Muncul Bertahap) ---
+             * Menggunakan IntersectionObserver untuk mendeteksi saat sebuah section masuk
+             * ke viewport, lalu menganimasikan elemen-elemen di dalamnya secara berurutan.
+             */
             const staggerObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const elements = entry.target.children;
                         for (let i = 0; i < elements.length; i++) {
+                            // Menambahkan delay transisi yang berbeda untuk setiap elemen
+                            // agar muncul satu per satu.
                             elements[i].style.transitionDelay = `${i * 120}ms`;
                             elements[i].style.opacity = '1';
                             elements[i].style.transform = 'translateY(0)';
                         }
+                        // Hentikan pengamatan setelah animasi berjalan sekali.
                         observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.15 });
+            }, { 
+                // Opsi: Animasi terpicu saat 15% dari section terlihat.
+                threshold: 0.15 
+            });
 
             document.querySelectorAll('.stagger-animation').forEach(el => staggerObserver.observe(el));
         });
