@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Perfect - Polished Design Studio</title>
+
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #fcfcfc;
+            --secondary-bg-color: #F5F0EB;
+            --text-color: #1a1a1a;
+            --border-color: #e0e0e0;
+            --secondary-text-color: #555555;
+            --accent-color-primary: #D97D54;
+            /* Terracotta */
+            --accent-color-secondary: #4A6D7C;
+            /* Slate Blue */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Satoshi', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            cursor: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 3rem;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        section {
+            padding: 6rem 0;
+            overflow: hidden;
+        }
+
+        section.bg-secondary {
+            background-color: var(--secondary-bg-color);
+        }
+
+        /* === CURSOR & HEADER === */
+        .cursor {
+            width: 10px;
+            height: 10px;
+            background-color: var(--text-color);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: all 0.15s ease;
+            z-index: 9999;
+        }
+
+        .cursor.hovered {
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent-color-primary);
+            mix-blend-mode: exclusion;
+        }
+
+        .main-header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 1.5rem 0;
+            background-color: transparent;
+            transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+        }
+
+        .header-scrolled {
+            background-color: rgba(252, 252, 252, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .main-nav ul li {
+            margin-left: 2.5rem;
+        }
+
+        .main-nav ul li a {
+            text-decoration: none;
+            color: var(--secondary-text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .main-nav ul li a:hover {
+            color: var(--accent-color-primary);
+        }
+
+        /* === HERO SECTION (UPDATED) === */
+        #hero {
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            max-width: 500px;
+            border-radius: 20px;
+        }
+
+        .hero-content {
+            text-align: left;
+        }
+
+        .hero-slider {
+            position: relative;
+            height: 7rem;
+        }
+
+        .hero-slider h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            font-weight: 700;
+            position: absolute;
+            top: 0;
+            left: 0;
+            /* Align to the left of the container */
+            width: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .hero-slider h1.active {
+            opacity: 1;
+        }
+
+        /* (Sisa CSS sama seperti v5.0) */
+
+        /* === OUR PROCESS SECTION === */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .process-step {
+            border-top: 2px solid var(--border-color);
+            padding-top: 1.5rem;
+        }
+
+        .process-step .step-number {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-color-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .process-step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .process-step p {
+            color: var(--secondary-text-color);
+        }
+
+        /* === TEAM SECTION === */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-member img {
+            width: 100%;
+            max-width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+        }
+
+        .team-member h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
+            font-weight: 500;
+        }
+
+        .team-member p {
+            color: var(--accent-color-primary);
+            font-weight: 500;
+        }
+
+        /* === PARALLAX SECTION === */
+        .parallax-section {
+            height: 60vh;
+            background-image: url('https://placehold.co/1920x1080/4A6D7C/F5F0EB?text=Vision');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* === TESTIMONIALS === */
+        .testimonial-slider {
+            position: relative;
+            max-width: 800px;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .slide blockquote {
+            border-left: 3px solid var(--accent-color-secondary);
+            padding-left: 1.5rem;
+            text-align: left;
+            font-size: 1.5rem;
+            font-style: normal;
+            font-weight: 400;
+            color: #333;
+        }
+
+        .slide .author {
+            font-weight: 600;
+            color: var(--accent-color-primary);
+            margin-top: 1rem;
+            text-align: left;
+            padding-left: 1.7rem;
+        }
+
+        .slider-dots {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: var(--border-color);
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .dot.active {
+            background-color: var(--accent-color-primary);
+        }
+
+        /* === FAQ SECTION (ACCORDION) === */
+        .faq-container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .faq-item summary {
+            font-size: 1.2rem;
+            font-weight: 500;
+            padding: 1.5rem 0;
+            cursor: pointer;
+            list-style: none;
+            position: relative;
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary::after {
+            content: '+';
+            position: absolute;
+            right: 1rem;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+            color: var(--accent-color-primary);
+        }
+
+        .faq-item[open] summary::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-item div {
+            padding: 0 1rem 1.5rem;
+            color: var(--secondary-text-color);
+        }
+
+        /* === STYLING LAINNYA === */
+        #portfolio {
+            border-top: 1px solid var(--border-color);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-info {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            background: var(--bg-color);
+            padding: 0.5rem 1rem;
+        }
+
+        .portfolio-item.full-width {
+            grid-column: 1 / -1;
+        }
+
+        #contact {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        #contact a {
+            color: var(--text-color);
+            font-weight: 600;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+        .main-footer {
+            padding: 4rem 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .footer-grid h4 {
+            font-size: 1.1rem;
+        }
+
+        .footer-grid p,
+        .footer-grid a {
+            color: var(--secondary-text-color);
+            text-decoration: none;
+        }
+
+        .footer-grid ul {
+            list-style: none;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media(max-width: 768px) {
+
+            .cursor,
+            .main-nav {
+                display: none;
+            }
+
+            body {
+                cursor: auto;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-image {
+                order: -1;
+                margin-bottom: 2rem;
+            }
+
+            /* Pindahkan gambar ke atas di mobile */
+            .hero-content {
+                text-align: center;
+            }
+
+            .hero-slider h1 {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            /* Pusatkan kembali di mobile */
+            .about-grid,
+            .portfolio-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="cursor"></div>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="#" class="logo">Pixel Perfect</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#process">Process</a></li>
+                    <li><a href="#portfolio">Work</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-image reveal">
+                        <img src="https://placehold.co/800x800/F5F0EB/4A6D7C?text=Illustration"
+                            alt="Company Illustration">
+                    </div>
+                    <div class="hero-content reveal">
+                        <div class="hero-slider">
+                            <h1 class="active">Clarity in design.</h1>
+                            <h1>Power in simplicity.</h1>
+                            <h1>Results in performance.</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="process" class="bg-secondary">
+            <div class="container">
+                <h2 class="reveal">Our Collaborative Process</h2>
+                <div class="process-grid">
+                    <div class="process-step reveal">
+                        <div class="step-number">01</div>
+                        <h3>Discovery & Strategy</h3>
+                        <p>We start by understanding your world: your goals, your audience, and your challenges.</p>
+                    </div>
+                    <div class="process-step reveal" style="transition-delay: 0.2s;">
+                        <div class="step-number">02</div>
+                        <h3>Design & Concept</h3>
+                        <p>We translate strategy into a beautiful and intuitive design system tailored for your brand.
+                        </p>
+                    </div>
+                    <div class="process-step reveal" style="transition-delay: 0.4s;">
+                        <div class="step-number">03</div>
+                        <h3>Develop & Refine</h3>
+                        <p>Our team brings the design to life with clean code, ensuring a flawless experience.</p>
+                    </div>
+                    <div class="process-step reveal" style="transition-delay: 0.6s;">
+                        <div class="step-number">04</div>
+                        <h3>Launch & Grow</h3>
+                        <p>We deploy your project and analyze its performance to ensure continued growth.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="container">
+            <h2 class="reveal">Selected Work</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item full-width reveal"><img
+                        src="https://placehold.co/1200x800/D97D54/fcfcfc?text=AURA" alt="Portfolio">
+                    <div class="portfolio-info">
+                        <h4>Aura Wellness Branding</h4>
+                    </div>
+                </div>
+                <div class="portfolio-item reveal"><img src="https://placehold.co/600x800/4A6D7C/fcfcfc?text=ZENITH"
+                        alt="Portfolio">
+                    <div class="portfolio-info">
+                        <h4>Zenith Finance App</h4>
+                    </div>
+                </div>
+                <div class="portfolio-item reveal"><img src="https://placehold.co/600x800/1a1a1a/fcfcfc?text=NOMAD"
+                        alt="Portfolio">
+                    <div class="portfolio-info">
+                        <h4>Nomad E-commerce</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="parallax-section"></div>
+
+        <section id="team" class="bg-secondary">
+            <div class="container">
+                <h2 class="reveal">Meet Our Core Team</h2>
+                <div class="team-grid">
+                    <div class="team-member reveal"><img src="https://placehold.co/200x200/e0e0e0/333?text=A"
+                            alt="Team Member">
+                        <h4>Andi Wijaya</h4>
+                        <p>Creative Director</p>
+                    </div>
+                    <div class="team-member reveal" style="transition-delay: 0.2s;"><img
+                            src="https://placehold.co/200x200/e0e0e0/333?text=B" alt="Team Member">
+                        <h4>Bunga Citra</h4>
+                        <p>Lead Designer</p>
+                    </div>
+                    <div class="team-member reveal" style="transition-delay: 0.4s;"><img
+                            src="https://placehold.co/200x200/e0e0e0/333?text=C" alt="Team Member">
+                        <h4>Candra Eka</h4>
+                        <p>Lead Developer</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="container">
+            <h2 class="reveal">Trusted by Innovators</h2>
+            <div class="testimonial-slider reveal">
+                <div class="slider-track"></div>
+            </div>
+            <div class="slider-dots"></div>
+        </section>
+
+        <section id="faq" class="bg-secondary">
+            <div class="container">
+                <h2 class="reveal">Frequently Asked Questions</h2>
+                <div class="faq-container reveal">
+                    <details class="faq-item">
+                        <summary>Apa saja layanan utama yang Anda tawarkan?</summary>
+                        <div>
+                            <p>Kami berspesialisasi dalam tiga area utama: Brand Identity, Product Design (UI/UX), dan
+                                Web Design & Development. Kami menangani semuanya mulai dari strategi awal hingga
+                                peluncuran akhir.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Berapa lama waktu yang dibutuhkan untuk sebuah proyek?</summary>
+                        <div>
+                            <p>Durasi proyek sangat bervariasi tergantung pada cakupannya. Proyek branding dasar bisa
+                                memakan waktu 4-6 minggu, sedangkan pengembangan web yang kompleks bisa memakan waktu
+                                3-6 bulan. Kami akan memberikan timeline yang jelas setelah sesi discovery.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Bagaimana model penetapan harga Anda?</summary>
+                        <div>
+                            <p>Kami biasanya bekerja dengan model harga tetap per proyek (fixed-price project) untuk
+                                memberikan kepastian anggaran bagi klien kami. Untuk kebutuhan konsultasi atau
+                                pengembangan berkelanjutan, kami juga menawarkan model retainer.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="container">
+            <div class="contact-content reveal">
+                <h2 style="margin-bottom: 1rem;">Let's build the future, together.</h2>
+                <p style="margin-bottom: 2rem; color: var(--secondary-text-color);">Ready to start a conversation? We
+                    are.</p>
+                <a href="mailto:hello@pixelperfect.studio"
+                    style="font-size: 1.5rem; font-weight: 500;">hello@pixelperfect.studio</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="logo-area">
+                    <h4>Pixel Perfect</h4>
+                    <p>&copy; 2025. Design with purpose.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Menu</h4>
+                    <ul>
+                        <li><a href="#process">Process</a></li>
+                        <li><a href="#portfolio">Work</a></li>
+                        <li><a href="#team">Team</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Social</h4>
+                    <ul>
+                        <li><a href="#">Behance</a></li>
+                        <li><a href="#">Dribbble</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // JS tidak berubah dari v5.0
+            const cursor = document.querySelector('.cursor');
+            const hoverables = document.querySelectorAll('a, button, .dot, summary');
+            document.addEventListener('mousemove', (e) => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
+            hoverables.forEach(el => { el.addEventListener('mouseover', () => cursor.classList.add('hovered')); el.addEventListener('mouseout', () => cursor.classList.remove('hovered')); });
+
+            const header = document.querySelector('.main-header');
+            window.addEventListener('scroll', () => { header.classList.toggle('header-scrolled', window.scrollY > 50); });
+
+            const heroSlides = document.querySelectorAll('.hero-slider h1');
+            let currentHeroSlide = 0;
+            if (heroSlides.length > 0) {
+                setInterval(() => {
+                    heroSlides[currentHeroSlide].classList.remove('active');
+                    currentHeroSlide = (currentHeroSlide + 1) % heroSlides.length;
+                    heroSlides[currentHeroSlide].classList.add('active');
+                }, 3000);
+            }
+
+            const testimonialsContainer = document.querySelector('#testimonials .slider-track');
+            if (testimonialsContainer) {
+                const testimonialsData = [
+                    { quote: "Their process is as beautiful as their designs. A truly collaborative partner.", author: "CEO, Aura Wellness" },
+                    { quote: "Pixel Perfect delivered a product that exceeded every expectation. Highly recommended.", author: "Founder, Zenith Finance" },
+                    { quote: "They took our vision and translated it into a compelling digital reality. The results speak for themselves.", author: "Marketing Head, Nomad" }
+                ];
+                testimonialsData.forEach(t => {
+                    const slide = document.createElement('div');
+                    slide.className = 'slide';
+                    slide.innerHTML = `<blockquote>"${t.quote}"</blockquote><p class="author">&mdash; ${t.author}</p>`;
+                    testimonialsContainer.appendChild(slide);
+                });
+            }
+
+            const track = document.querySelector('.slider-track');
+            if (track) {
+                const slides = Array.from(track.children);
+                const dotsNav = document.querySelector('.slider-dots');
+                if (slides.length > 0) {
+                    const slideWidth = slides[0].getBoundingClientRect().width;
+                    if (slideWidth > 0) {
+                        slides.forEach((slide, index) => {
+                            const dot = document.createElement('button');
+                            dot.classList.add('dot');
+                            if (index === 0) dot.classList.add('active');
+                            dotsNav.appendChild(dot);
+                            dot.addEventListener('click', e => moveToSlide(index));
+                        });
+                        const dots = Array.from(dotsNav.children);
+
+                        function moveToSlide(targetIndex) {
+                            track.style.transform = 'translateX(-' + slideWidth * targetIndex + 'px)';
+                            const currentDot = dotsNav.querySelector('.active');
+                            if (currentDot) currentDot.classList.remove('active');
+                            dots[targetIndex].classList.add('active');
+                        }
+                    }
+                }
+            }
+
+            const reveals = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            reveals.forEach(el => revealObserver.observe(el));
+        });
+    </script>
+</body>
+
+</html>
