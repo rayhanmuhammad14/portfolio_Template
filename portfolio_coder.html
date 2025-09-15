@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name // Web Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <style>
+        /* === CSS UTAMA === */
+
+        /* Import Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --bg-color: #1a1a2e;
+            --primary-color: #00ffc6;
+            --secondary-color: #e94560;
+            --font-color: #e0e0e0;
+            --card-bg: #16213e;
+            --border-color: #2a2a4a;
+            --shadow-color: rgba(0, 0, 0, 0.2);
+            --code-bg: #0f192e;
+        }
+
+        /* LIGHT MODE COLOR PALETTE */
+        body.light-mode {
+            --bg-color: #f4f7f9;
+            --primary-color: #008080;
+            --secondary-color: #d9203d;
+            --font-color: #333333;
+            --card-bg: #ffffff;
+            --border-color: #e0e0e0;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --code-bg: #eef2f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--font-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(26, 26, 46, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: box-shadow 0.3s ease, background-color 0.3s;
+        }
+
+        body.light-mode .navbar {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 5px 15px var(--shadow-color);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .navbar .logo {
+            font-family: 'Fira Code', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            z-index: 1001;
+        }
+
+        .navbar .logo span {
+            color: var(--font-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar ul {
+            display: flex;
+            align-items: center;
+            list-style: none;
+        }
+
+        .navbar ul li a {
+            position: relative;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.95rem;
+            color: var(--font-color);
+            text-decoration: none;
+            margin-left: 2rem;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .navbar ul li a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+
+        .navbar ul li a:hover::after,
+        .navbar ul li a.active::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .navbar ul li a:hover,
+        .navbar ul li a.active {
+            color: var(--primary-color);
+        }
+
+        #theme-toggle {
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-left: 2.5rem;
+            color: var(--font-color);
+            transition: transform 0.4s ease;
+        }
+
+        #theme-toggle:hover {
+            transform: rotate(90deg);
+        }
+
+        .nav-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        @media (max-width: 850px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 60%;
+                height: 100vh;
+                background: var(--card-bg);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: right 0.4s ease-in-out;
+                box-shadow: -5px 0 15px var(--shadow-color);
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .navbar ul {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .navbar ul li {
+                margin: 1.5rem 0;
+            }
+
+            .navbar ul li a {
+                margin-left: 0;
+                font-size: 1.2rem;
+            }
+
+            #theme-toggle {
+                margin-left: 0;
+                margin-top: 2rem;
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h1 .name {
+            color: var(--primary-color);
+        }
+
+        .hero .typing-text {
+            font-family: 'Fira Code', monospace;
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            min-height: 3rem;
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 10px;
+            height: 2rem;
+            background-color: var(--secondary-color);
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* Universal Section Styling */
+        .section {
+            padding: 6rem 0;
+        }
+
+        .section-title {
+            font-family: 'Fira Code', monospace;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title::before {
+            content: '// ';
+            color: var(--primary-color);
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            /* Image takes 1 part, text 2 parts */
+            gap: 2rem;
+            align-items: start;
+            /* Align items to the start of the grid area */
+        }
+
+        .about-image-container {
+            text-align: center;
+            padding-top: 1rem;
+            /* Adjust to align with text start */
+        }
+
+        .about-image-container img {
+            width: 180px;
+            /* Slightly smaller for better fit */
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary-color);
+            box-shadow: 0 0 15px var(--shadow-color);
+        }
+
+        .about-text-content {
+            font-size: 1.1rem;
+            padding-top: 1rem;
+        }
+
+        .code-block {
+            grid-column: 1 / -1;
+            /* Make code block span full width */
+            background: var(--code-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+            white-space: pre;
+            border: 1px solid var(--border-color);
+            margin-top: 2rem;
+            /* Add some space above the code block */
+        }
+
+        .code-block .keyword {
+            color: #e94560;
+        }
+
+        .code-block .variable {
+            color: #00ffc6;
+        }
+
+        body.light-mode .code-block .variable {
+            color: #008080;
+        }
+
+        .code-block .property {
+            color: #f9c56a;
+        }
+
+        .code-block .string {
+            color: #a8e6cf;
+        }
+
+        body.light-mode .code-block .string {
+            color: #50a14f;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .skill-item {
+            background-color: var(--card-bg);
+            padding: 1.5rem 1rem;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .skill-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .skill-item i {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .skill-item h3 {
+            font-family: 'Fira Code', monospace;
+            font-size: 1rem;
+            color: var(--font-color);
+        }
+
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            opacity: 0.3;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: var(--bg-color);
+            border: 4px solid var(--primary-color);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: var(--card-bg);
+            position: relative;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .timeline-content h3 {
+            color: var(--primary-color);
+        }
+
+        .timeline-date {
+            font-family: 'Fira Code', monospace;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            padding-bottom: 0.5rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px var(--shadow-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 128, 128, 0.2);
+        }
+
+        .project-card .card-header {
+            background-color: var(--code-bg);
+            padding: 0.5rem 1rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            color: #888;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .project-card .card-header::before {
+            content: '● ● ●';
+            color: #ccc;
+            letter-spacing: 5px;
+            margin-right: 1rem;
+        }
+
+        .project-card .card-body {
+            padding: 1.5rem;
+        }
+
+        .project-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-card .project-tags {
+            margin-top: 1rem;
+        }
+
+        .project-card .tag {
+            display: inline-block;
+            background: var(--bg-color);
+            color: var(--primary-color);
+            padding: 0.3rem 0.7rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            font-family: 'Fira Code', monospace;
+        }
+
+        /* Contact & Footer */
+        .contact-section {
+            background: var(--card-bg);
+            text-align: center;
+            padding: 4rem 0 2rem;
+        }
+
+        .social-links a {
+            color: var(--font-color);
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 1.8rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .contact-section .section-title {
+            margin-bottom: 1rem;
+        }
+
+        .contact-section p {
+            margin-bottom: 2rem;
+        }
+
+        .git-commit-msg {
+            margin-top: 3rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            color: #888;
+            background-color: var(--code-bg);
+            padding: 0.8rem;
+            border-radius: 5px;
+            display: inline-block;
+            border: 1px solid var(--border-color);
+        }
+
+        .git-commit-msg span {
+            color: var(--primary-color);
+        }
+
+        .main-footer {
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+            font-family: 'Fira Code', monospace;
+            background-color: var(--code-bg);
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Responsive adjustments for about section */
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                /* Stack content on smaller screens */
+            }
+
+            .about-image-container {
+                order: -1;
+                /* Place image above text on smaller screens */
+                margin-bottom: 1rem;
+            }
+
+            .about-text-content {
+                padding-top: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo"><span>&lt;</span>YourName<span>/&gt;</span></a>
+            <div class="nav-menu">
+                <ul>
+                    <li><a href="#about">about</a></li>
+                    <li><a href="#projects">projects</a></li>
+                    <li><a href="#skills">skills</a></li>
+                    <li><a href="#experience">journey</a></li>
+                    <li><a href="#contact">contact</a></li>
+                </ul>
+                <div id="theme-toggle">
+                    <i class="fas fa-gear"></i>
+                </div>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h1>Hi, I'm <span class="name">Your Name</span>.</h1>
+            <p class="typing-text">I build <span id="typed-output"></span><span class="typing-cursor"></span></p>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-grid">
+                    <div class="about-image-container">
+                        <img src="jasman.jpg"
+                            alt="Your Name's Profile Picture">
+                    </div>
+                    <div class="about-text-content">
+                        <p>Hello world! I'm Your Name, a developer who loves building things for the web. I turn coffee
+                            into clean, efficient, and beautiful code.</p>
+                        <br>
+                        <p>My passion is crafting digital experiences that are not only functional but also intuitive
+                            and fun to use.</p>
+                    </div>
+                    <div class="code-block">
+                        <span class="keyword">const</span> <span class="variable">developer</span> = {
+                        <span class="property">name</span>: <span class="string">'Your Name'</span>,
+                        <span class="property">focus</span>: [<span class="string">'Frontend'</span>, <span
+                            class="string">'Backend'</span>, <span class="string">'UI/UX'</span>],
+                        <span class="property">status</span>: <span class="string">'coding...'</span>
+                        };
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <div class="container">
+                <h2 class="section-title">My Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="card-header">project-1.js</div>
+                        <div class="card-body">
+                            <h3>Awesome Portfolio</h3>
+                            <p>A personal portfolio website to showcase my skills and projects in a modern way.</p>
+                            <div class="project-tags">
+                                <span class="tag">HTML</span>
+                                <span class="tag">CSS</span>
+                                <span class="tag">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="card-header">project-2.py</div>
+                        <div class="card-body">
+                            <h3>Data Visualizer</h3>
+                            <p>A tool for visualizing complex data sets with interactive charts and graphs.</p>
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">Flask</span>
+                                <span class="tag">D3.js</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="card-header">project-3.jsx</div>
+                        <div class="card-body">
+                            <h3>E-commerce Site</h3>
+                            <p>A full-stack e-commerce platform built with the MERN stack for a seamless shopping
+                                experience.</p>
+                            <div class="project-tags">
+                                <span class="tag">React</span>
+                                <span class="tag">Node.js</span>
+                                <span class="tag">MongoDB</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <div class="container">
+                <h2 class="section-title">Skills &amp; Technologies</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <i class="devicon-html5-plain colored"></i>
+                        <h3>HTML</h3>
+                    </div>
+                    <div class="skill-item">
+                        <i class="devicon-css3-plain colored"></i>
+                        <h3>CSS</h3>
+                    </div>
+                    <div class="skill-item">
+                        <i class="devicon-jquery-plain colored"></i>
+                        <h3>jQuery</h3>
+                    </div>
+                    <div class="skill-item">
+                        <i class="devicon-axios-plain colored"></i>
+                        <h3>AJAX</h3>
+                    </div>
+                    <div class="skill-item">
+                        <i class="devicon-python-plain colored"></i>
+                        <h3>Python</h3>
+                    </div>
+                    <div class="skill-item">
+                        <i class="devicon-flask-original colored"></i>
+                        <h3>Flask</h3>
+                    </div>
+                    <div class="skill-item">
+                        <i class="devicon-mongodb-plain colored"></i>
+                        <h3>MongoDB</h3>
+                    </div>
+                    <div class="skill-item">
+                        <i class="devicon-mysql-plain colored"></i>
+                        <h3>MySQL</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section">
+            <div class="container">
+                <h2 class="section-title">My Journey</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>Lead Developer @ Tech Corp</h3>
+                            <p class="timeline-date">2022 - Present</p>
+                            <p>Leading the frontend team to build and maintain scalable web applications.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>B.Sc. in Computer Science</h3>
+                            <p class="timeline-date">2018 - 2022</p>
+                            <p>Graduated from the University of Technology with a focus on software engineering.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>Junior Developer @ Web Solutions</h3>
+                            <p class="timeline-date">2021 - 2022</p>
+                            <p>Developed features for various client websites using WordPress and JavaScript.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p>Let's build something amazing together. Find me on:</p>
+            <div class="social-links">
+                <a href="#" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="#" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+            </div>
+            <div class="git-commit-msg">
+                <span>git commit -m</span> "Crafted with passion, coffee, and code."
+            </div>
+        </div>
+    </footer>
+
+    <div class="main-footer">
+        &copy; 2025 Your Name. All Rights Reserved.
+    </div>
+
+    <script>
+        // Typing animation script
+        const typedTextSpan = document.getElementById("typed-output");
+        const textArray = ["web applications.", "interactive experiences.", "beautiful websites.", "things for the web."];
+        const typingDelay = 100;
+        const erasingDelay = 50;
+        const newTextDelay = 2000;
+        let textArrayIndex = 0;
+        let charIndex = 0;
+
+        function type() {
+            if (charIndex < textArray[textArrayIndex].length) {
+                typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(type, typingDelay);
+            } else {
+                setTimeout(erase, newTextDelay);
+            }
+        }
+
+        function erase() {
+            if (charIndex > 0) {
+                typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(erase, erasingDelay);
+            } else {
+                textArrayIndex++;
+                if (textArrayIndex >= textArray.length) textArrayIndex = 0;
+                setTimeout(type, typingDelay + 1100);
+            }
+        }
+
+        // Navbar scroll effect script
+        const nav = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // THEME SWITCHER SCRIPT
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        const applyTheme = (theme) => {
+            if (theme === 'light') {
+                body.classList.add('light-mode');
+            } else {
+                body.classList.remove('light-mode');
+            }
+        };
+
+        themeToggle.addEventListener('click', () => {
+            const isLight = body.classList.toggle('light-mode');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        });
+
+        // --- NAVBAR IMPROVEMENTS SCRIPT ---
+        const navToggle = document.getElementById('nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        const navLinks = document.querySelectorAll('.nav-menu ul li a');
+        const sections = document.querySelectorAll('main .section'); // More specific selector
+
+        // Hamburger menu toggle
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = navToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Close mobile menu when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    const icon = navToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+
+        // Active link highlighting on scroll
+        const highlightNav = () => {
+            let currentSectionId = '';
+            const headerHeight = document.querySelector('.navbar').offsetHeight;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - headerHeight) {
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+
+            // Handle contact section separately as it's a footer
+            const contactSection = document.querySelector('#contact');
+            if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 50) { // Added buffer
+                currentSectionId = 'contact';
+            }
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === currentSectionId) {
+                    link.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', highlightNav);
+
+        // Check for saved theme on page load & run initial scripts
+        document.addEventListener("DOMContentLoaded", function () {
+            if (textArray.length) setTimeout(type, newTextDelay + 250);
+
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            applyTheme(savedTheme);
+
+            highlightNav();
+        });
+    </script>
+</body>
+
+</html>
