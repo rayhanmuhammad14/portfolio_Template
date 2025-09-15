@@ -7,6 +7,7 @@
     <title>Your Name // Web Developer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
     <style>
         /* === CSS UTAMA === */
 
@@ -60,6 +61,42 @@
             margin: auto;
             padding: 0 2rem;
         }
+
+        /* Preloader Styles */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: var(--bg-color);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.75s ease, visibility 0.75s ease;
+        }
+
+        #preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            font-family: 'Fira Code', monospace;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .loader-cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1.5rem;
+            background-color: var(--primary-color);
+            animation: blink 0.7s infinite;
+            vertical-align: middle;
+        }
+
 
         /* Navigation */
         .navbar {
@@ -216,17 +253,24 @@
 
         /* Hero Section */
         .hero {
+            position: relative;
+            /* Penting untuk latar belakang absolut */
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
+            overflow: hidden;
+            /* Sembunyikan karakter biner yang keluar */
         }
 
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 0.5rem;
+            position: relative;
+            /* Untuk z-index agar di atas latar belakang */
+            z-index: 2;
         }
 
         .hero h1 .name {
@@ -238,6 +282,9 @@
             font-size: 1.8rem;
             color: var(--secondary-color);
             min-height: 3rem;
+            position: relative;
+            /* Untuk z-index */
+            z-index: 2;
         }
 
         .typing-cursor {
@@ -246,6 +293,7 @@
             height: 2rem;
             background-color: var(--secondary-color);
             animation: blink 0.7s infinite;
+            vertical-align: middle;
         }
 
         @keyframes blink {
@@ -259,6 +307,114 @@
                 opacity: 0;
             }
         }
+
+        /* Binary Background */
+        .binary-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            /* Di bawah konten hero, di atas background */
+            pointer-events: none;
+            /* Agar tidak mengganggu interaksi */
+        }
+
+        .binary-background span {
+            position: absolute;
+            color: rgba(0, 255, 198, 0.1);
+            /* Warna biner yang lembut */
+            font-family: 'Fira Code', monospace;
+            font-size: 1.2rem;
+            animation: fall linear infinite;
+            opacity: 0;
+        }
+
+        body.light-mode .binary-background span {
+            color: rgba(0, 128, 128, 0.05);
+            /* Versi terang */
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) translateX(0);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100vh) translateX(50px);
+                opacity: 0;
+            }
+        }
+
+        /* Glow Lines for Hero Title */
+        .glow-line-container {
+            position: absolute;
+            bottom: -5px;
+            /* Sesuaikan posisi di bawah teks */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 400px;
+            /* Lebar garis glow */
+            height: 3px;
+            /* Ketebalan garis */
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .glow-line {
+            position: absolute;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+            width: 0%;
+            animation: glow-scan 4s infinite cubic-bezier(0.8, 0.1, 0.2, 0.9);
+            animation-delay: 2s;
+            /* Tunda sedikit agar tidak langsung muncul */
+        }
+
+        @keyframes glow-scan {
+            0% {
+                left: -100%;
+                width: 0%;
+                opacity: 0;
+            }
+
+            20% {
+                left: 0%;
+                width: 50%;
+                opacity: 1;
+            }
+
+            50% {
+                left: 50%;
+                width: 100%;
+                opacity: 1;
+            }
+
+            80% {
+                left: 100%;
+                width: 0%;
+                opacity: 0;
+            }
+
+            100% {
+                left: 100%;
+                width: 0%;
+                opacity: 0;
+            }
+        }
+
 
         /* Universal Section Styling */
         .section {
@@ -281,21 +437,17 @@
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 2fr;
-            /* Image takes 1 part, text 2 parts */
             gap: 2rem;
             align-items: start;
-            /* Align items to the start of the grid area */
         }
 
         .about-image-container {
             text-align: center;
             padding-top: 1rem;
-            /* Adjust to align with text start */
         }
 
         .about-image-container img {
             width: 180px;
-            /* Slightly smaller for better fit */
             height: 180px;
             border-radius: 50%;
             object-fit: cover;
@@ -310,7 +462,6 @@
 
         .code-block {
             grid-column: 1 / -1;
-            /* Make code block span full width */
             background: var(--code-bg);
             padding: 1.5rem;
             border-radius: 8px;
@@ -318,7 +469,6 @@
             white-space: pre;
             border: 1px solid var(--border-color);
             margin-top: 2rem;
-            /* Add some space above the code block */
         }
 
         .code-block .keyword {
@@ -343,6 +493,21 @@
 
         body.light-mode .code-block .string {
             color: #50a14f;
+        }
+
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image-container {
+                order: -1;
+                margin-bottom: 1rem;
+            }
+
+            .about-text-content {
+                padding-top: 0;
+            }
         }
 
         /* Skills Section */
@@ -561,28 +726,17 @@
             background-color: var(--code-bg);
             border-top: 1px solid var(--border-color);
         }
-
-        /* Responsive adjustments for about section */
-        @media (max-width: 768px) {
-            .about-grid {
-                grid-template-columns: 1fr;
-                /* Stack content on smaller screens */
-            }
-
-            .about-image-container {
-                order: -1;
-                /* Place image above text on smaller screens */
-                margin-bottom: 1rem;
-            }
-
-            .about-text-content {
-                padding-top: 0;
-            }
-        }
     </style>
 </head>
 
 <body>
+
+    <div id="preloader">
+        <div class="loader-content">
+            <span id="loader-text"></span>
+            <span class="loader-cursor"></span>
+        </div>
+    </div>
 
     <nav class="navbar">
         <div class="container">
@@ -606,8 +760,13 @@
     </nav>
 
     <header class="hero">
+        <div class="binary-background" id="binary-background"></div>
         <div class="container">
-            <h1>Hi, I'm <span class="name">Your Name</span>.</h1>
+            <h1>Hi, I'm <span class="name">Your Name</span>.
+                <div class="glow-line-container">
+                    <div class="glow-line"></div>
+                </div>
+            </h1>
             <p class="typing-text">I build <span id="typed-output"></span><span class="typing-cursor"></span></p>
         </div>
     </header>
@@ -615,20 +774,19 @@
     <main>
         <section id="about" class="section">
             <div class="container">
-                <h2 class="section-title">About Me</h2>
+                <h2 class="section-title" data-aos="fade-up">About Me</h2>
                 <div class="about-grid">
-                    <div class="about-image-container">
-                        <img src="jasman.jpg"
-                            alt="Your Name's Profile Picture">
+                    <div class="about-image-container" data-aos="fade-right">
+                        <img src="jasman.jpg" alt="Your Name's Profile Picture">
                     </div>
-                    <div class="about-text-content">
+                    <div class="about-text-content" data-aos="fade-left" data-aos-delay="200">
                         <p>Hello world! I'm Your Name, a developer who loves building things for the web. I turn coffee
                             into clean, efficient, and beautiful code.</p>
                         <br>
                         <p>My passion is crafting digital experiences that are not only functional but also intuitive
                             and fun to use.</p>
                     </div>
-                    <div class="code-block">
+                    <div class="code-block" data-aos="fade-up" data-aos-delay="400">
                         <span class="keyword">const</span> <span class="variable">developer</span> = {
                         <span class="property">name</span>: <span class="string">'Your Name'</span>,
                         <span class="property">focus</span>: [<span class="string">'Frontend'</span>, <span
@@ -642,9 +800,9 @@
 
         <section id="projects" class="section">
             <div class="container">
-                <h2 class="section-title">My Projects</h2>
+                <h2 class="section-title" data-aos="fade-up">My Projects</h2>
                 <div class="projects-grid">
-                    <div class="project-card">
+                    <div class="project-card" data-aos="fade-up" data-aos-delay="100">
                         <div class="card-header">project-1.js</div>
                         <div class="card-body">
                             <h3>Awesome Portfolio</h3>
@@ -656,7 +814,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card" data-aos="fade-up" data-aos-delay="200">
                         <div class="card-header">project-2.py</div>
                         <div class="card-body">
                             <h3>Data Visualizer</h3>
@@ -668,7 +826,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card" data-aos="fade-up" data-aos-delay="300">
                         <div class="card-header">project-3.jsx</div>
                         <div class="card-body">
                             <h3>E-commerce Site</h3>
@@ -687,37 +845,37 @@
 
         <section id="skills" class="section">
             <div class="container">
-                <h2 class="section-title">Skills &amp; Technologies</h2>
+                <h2 class="section-title" data-aos="fade-up">Skills &amp; Technologies</h2>
                 <div class="skills-grid">
-                    <div class="skill-item">
+                    <div class="skill-item" data-aos="fade-up" data-aos-delay="50">
                         <i class="devicon-html5-plain colored"></i>
                         <h3>HTML</h3>
                     </div>
-                    <div class="skill-item">
+                    <div class="skill-item" data-aos="fade-up" data-aos-delay="100">
                         <i class="devicon-css3-plain colored"></i>
                         <h3>CSS</h3>
                     </div>
-                    <div class="skill-item">
+                    <div class="skill-item" data-aos="fade-up" data-aos-delay="150">
                         <i class="devicon-jquery-plain colored"></i>
                         <h3>jQuery</h3>
                     </div>
-                    <div class="skill-item">
+                    <div class="skill-item" data-aos="fade-up" data-aos-delay="200">
                         <i class="devicon-axios-plain colored"></i>
                         <h3>AJAX</h3>
                     </div>
-                    <div class="skill-item">
+                    <div class="skill-item" data-aos="fade-up" data-aos-delay="250">
                         <i class="devicon-python-plain colored"></i>
                         <h3>Python</h3>
                     </div>
-                    <div class="skill-item">
+                    <div class="skill-item" data-aos="fade-up" data-aos-delay="300">
                         <i class="devicon-flask-original colored"></i>
                         <h3>Flask</h3>
                     </div>
-                    <div class="skill-item">
+                    <div class="skill-item" data-aos="fade-up" data-aos-delay="350">
                         <i class="devicon-mongodb-plain colored"></i>
                         <h3>MongoDB</h3>
                     </div>
-                    <div class="skill-item">
+                    <div class="skill-item" data-aos="fade-up" data-aos-delay="400">
                         <i class="devicon-mysql-plain colored"></i>
                         <h3>MySQL</h3>
                     </div>
@@ -727,23 +885,23 @@
 
         <section id="experience" class="section">
             <div class="container">
-                <h2 class="section-title">My Journey</h2>
+                <h2 class="section-title" data-aos="fade-up">My Journey</h2>
                 <div class="timeline">
-                    <div class="timeline-item">
+                    <div class="timeline-item" data-aos="fade-right">
                         <div class="timeline-content">
                             <h3>Lead Developer @ Tech Corp</h3>
                             <p class="timeline-date">2022 - Present</p>
                             <p>Leading the frontend team to build and maintain scalable web applications.</p>
                         </div>
                     </div>
-                    <div class="timeline-item">
+                    <div class="timeline-item" data-aos="fade-left">
                         <div class="timeline-content">
                             <h3>B.Sc. in Computer Science</h3>
                             <p class="timeline-date">2018 - 2022</p>
                             <p>Graduated from the University of Technology with a focus on software engineering.</p>
                         </div>
                     </div>
-                    <div class="timeline-item">
+                    <div class="timeline-item" data-aos="fade-right">
                         <div class="timeline-content">
                             <h3>Junior Developer @ Web Solutions</h3>
                             <p class="timeline-date">2021 - 2022</p>
@@ -757,25 +915,85 @@
 
     <footer id="contact" class="contact-section">
         <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <p>Let's build something amazing together. Find me on:</p>
-            <div class="social-links">
+            <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
+            <p data-aos="fade-up" data-aos-delay="100">Let's build something amazing together. Find me on:</p>
+            <div class="social-links" data-aos="fade-up" data-aos-delay="200">
                 <a href="#" target="_blank"><i class="fa-brands fa-github"></i></a>
                 <a href="#" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
                 <a href="#" target="_blank"><i class="fa-brands fa-twitter"></i></a>
             </div>
-            <div class="git-commit-msg">
+            <div class="git-commit-msg" data-aos="fade-up" data-aos-delay="300">
                 <span>git commit -m</span> "Crafted with passion, coffee, and code."
             </div>
         </div>
     </footer>
 
-    <div class="main-footer">
+    <div class="main-footer" data-aos="fade-in">
         &copy; 2025 Your Name. All Rights Reserved.
     </div>
 
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script>
-        // Typing animation script
+        // --- PRELOADER SCRIPT ---
+        const preloader = document.getElementById('preloader');
+        const loaderText = document.getElementById('loader-text');
+        const loadingMessage = "Initializing...";
+        let i = 0;
+        let isPageLoaded = false;
+        let isAnimationComplete = false;
+
+        function tryHidePreloader() {
+            if (isPageLoaded && isAnimationComplete) {
+                setTimeout(() => {
+                    preloader.classList.add('hidden');
+                }, 200); // Short delay before fading out
+            }
+        }
+
+        function typeLoader() {
+            if (i < loadingMessage.length) {
+                loaderText.textContent += loadingMessage.charAt(i);
+                i++;
+                setTimeout(typeLoader, 120);
+            } else {
+                isAnimationComplete = true;
+                tryHidePreloader(); // Check if page is also loaded
+            }
+        }
+
+        typeLoader(); // Start typing animation immediately
+
+        window.addEventListener('load', () => {
+            isPageLoaded = true;
+            tryHidePreloader(); // Check if animation is also complete
+        });
+
+        // --- BINARY BACKGROUND SCRIPT ---
+        const binaryBackground = document.getElementById('binary-background');
+        const characters = '01'; // Hanya 0 dan 1
+        const numCharacters = 100; // Jumlah karakter yang jatuh
+
+        function createBinaryCharacter() {
+            const span = document.createElement('span');
+            span.textContent = characters[Math.floor(Math.random() * characters.length)];
+            span.style.left = Math.random() * 100 + 'vw';
+            span.style.animationDuration = Math.random() * 5 + 5 + 's'; // Antara 5-10 detik
+            span.style.animationDelay = Math.random() * 5 + 's'; // Tunda agar muncul secara acak
+            binaryBackground.appendChild(span);
+
+            // Hapus elemen setelah animasi selesai untuk mencegah DOM membesar
+            span.addEventListener('animationend', () => {
+                span.remove();
+            });
+        }
+
+        // Buat karakter biner secara berkala
+        setInterval(createBinaryCharacter, 300); // Setiap 300ms tambahkan karakter baru
+        for (let j = 0; j < numCharacters; j++) {
+            createBinaryCharacter(); // Buat beberapa karakter awal agar langsung terlihat
+        }
+
+        // Typing animation script for hero
         const typedTextSpan = document.getElementById("typed-output");
         const textArray = ["web applications.", "interactive experiences.", "beautiful websites.", "things for the web."];
         const typingDelay = 100;
@@ -837,7 +1055,7 @@
         const navToggle = document.getElementById('nav-toggle');
         const navMenu = document.querySelector('.nav-menu');
         const navLinks = document.querySelectorAll('.nav-menu ul li a');
-        const sections = document.querySelectorAll('main .section'); // More specific selector
+        const sections = document.querySelectorAll('main .section');
 
         // Hamburger menu toggle
         navToggle.addEventListener('click', () => {
@@ -873,7 +1091,7 @@
 
             // Handle contact section separately as it's a footer
             const contactSection = document.querySelector('#contact');
-            if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 50) { // Added buffer
+            if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 50) {
                 currentSectionId = 'contact';
             }
 
@@ -895,6 +1113,12 @@
             applyTheme(savedTheme);
 
             highlightNav();
+            AOS.init({
+                duration: 800, // Durasi animasi
+                easing: 'ease-out-quad', // Jenis easing
+                once: true, // Animasi hanya berjalan sekali saat elemen muncul
+                mirror: false // Tidak ada animasi saat scrolling ke atas
+            });
         });
     </script>
 </body>
