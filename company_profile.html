@@ -177,7 +177,6 @@
             position: absolute;
             top: 0;
             left: 0;
-            /* Align to the left of the container */
             width: 100%;
             opacity: 0;
             transition: opacity 0.8s ease;
@@ -186,8 +185,6 @@
         .hero-slider h1.active {
             opacity: 1;
         }
-
-        /* (Sisa CSS sama seperti v5.0) */
 
         /* === OUR PROCESS SECTION === */
         .process-grid {
@@ -251,8 +248,11 @@
 
         /* === PARALLAX SECTION === */
         .parallax-section {
+            margin: 6rem 0;
+            /* Memberi jarak vertikal */
             height: 60vh;
-            background-image: url('https://placehold.co/1920x1080/4A6D7C/F5F0EB?text=Vision');
+            background-image: url('https://placehold.co/1920x1080/4A6D7C/F5F0EB?text=Creative+Vision');
+            /* DIPERBAIKI: Menggunakan gambar ilustrasi placeholder */
             background-attachment: fixed;
             background-position: center;
             background-repeat: no-repeat;
@@ -467,7 +467,6 @@
                 margin-bottom: 2rem;
             }
 
-            /* Pindahkan gambar ke atas di mobile */
             .hero-content {
                 text-align: center;
             }
@@ -477,7 +476,6 @@
                 transform: translateX(-50%);
             }
 
-            /* Pusatkan kembali di mobile */
             .about-grid,
             .portfolio-grid,
             .footer-grid {
@@ -510,7 +508,7 @@
             <div class="container">
                 <div class="hero-grid">
                     <div class="hero-image reveal">
-                        <img src="https://placehold.co/800x800/F5F0EB/4A6D7C?text=Illustration"
+                        <img src="https://placehold.co/800x800/F5F0EB/4A6D7C?text=Creative+Vision"
                             alt="Company Illustration">
                     </div>
                     <div class="hero-content reveal">
@@ -557,19 +555,19 @@
             <h2 class="reveal">Selected Work</h2>
             <div class="portfolio-grid">
                 <div class="portfolio-item full-width reveal"><img
-                        src="https://placehold.co/1200x800/D97D54/fcfcfc?text=AURA" alt="Portfolio">
+                        src="https://placehold.co/1200x800/D97D54/fcfcfc?text=Project+One" alt="Portfolio">
                     <div class="portfolio-info">
                         <h4>Aura Wellness Branding</h4>
                     </div>
                 </div>
-                <div class="portfolio-item reveal"><img src="https://placehold.co/600x800/4A6D7C/fcfcfc?text=ZENITH"
-                        alt="Portfolio">
+                <div class="portfolio-item reveal"><img
+                        src="https://placehold.co/600x800/4A6D7C/fcfcfc?text=Project+Two" alt="Portfolio">
                     <div class="portfolio-info">
                         <h4>Zenith Finance App</h4>
                     </div>
                 </div>
-                <div class="portfolio-item reveal"><img src="https://placehold.co/600x800/1a1a1a/fcfcfc?text=NOMAD"
-                        alt="Portfolio">
+                <div class="portfolio-item reveal"><img
+                        src="https://placehold.co/600x800/1a1a1a/fcfcfc?text=Project+Three" alt="Portfolio">
                     <div class="portfolio-info">
                         <h4>Nomad E-commerce</h4>
                     </div>
@@ -583,18 +581,18 @@
             <div class="container">
                 <h2 class="reveal">Meet Our Core Team</h2>
                 <div class="team-grid">
-                    <div class="team-member reveal"><img src="https://placehold.co/200x200/e0e0e0/333?text=A"
-                            alt="Team Member">
+                    <div class="team-member reveal"><img
+                            src="https://placehold.co/200x200/e0e0e0/333?text=Team+Member+1" alt="Team Member">
                         <h4>Andi Wijaya</h4>
                         <p>Creative Director</p>
                     </div>
                     <div class="team-member reveal" style="transition-delay: 0.2s;"><img
-                            src="https://placehold.co/200x200/e0e0e0/333?text=B" alt="Team Member">
+                            src="https://placehold.co/200x200/e0e0e0/333?text=Team+Member+2" alt="Team Member">
                         <h4>Bunga Citra</h4>
                         <p>Lead Designer</p>
                     </div>
                     <div class="team-member reveal" style="transition-delay: 0.4s;"><img
-                            src="https://placehold.co/200x200/e0e0e0/333?text=C" alt="Team Member">
+                            src="https://placehold.co/200x200/e0e0e0/333?text=Team+Member+3" alt="Team Member">
                         <h4>Candra Eka</h4>
                         <p>Lead Developer</p>
                     </div>
@@ -682,7 +680,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // JS tidak berubah dari v5.0
             const cursor = document.querySelector('.cursor');
             const hoverables = document.querySelectorAll('a, button, .dot, summary');
             document.addEventListener('mousemove', (e) => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });

@@ -254,7 +254,6 @@
         /* Hero Section */
         .hero {
             position: relative;
-            /* Penting untuk latar belakang absolut */
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -262,14 +261,12 @@
             align-items: center;
             text-align: center;
             overflow: hidden;
-            /* Sembunyikan karakter biner yang keluar */
         }
 
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 0.5rem;
             position: relative;
-            /* Untuk z-index agar di atas latar belakang */
             z-index: 2;
         }
 
@@ -283,7 +280,6 @@
             color: var(--secondary-color);
             min-height: 3rem;
             position: relative;
-            /* Untuk z-index */
             z-index: 2;
         }
 
@@ -317,15 +313,12 @@
             height: 100%;
             overflow: hidden;
             z-index: 1;
-            /* Di bawah konten hero, di atas background */
             pointer-events: none;
-            /* Agar tidak mengganggu interaksi */
         }
 
         .binary-background span {
             position: absolute;
             color: rgba(0, 255, 198, 0.1);
-            /* Warna biner yang lembut */
             font-family: 'Fira Code', monospace;
             font-size: 1.2rem;
             animation: fall linear infinite;
@@ -334,7 +327,6 @@
 
         body.light-mode .binary-background span {
             color: rgba(0, 128, 128, 0.05);
-            /* Versi terang */
         }
 
         @keyframes fall {
@@ -361,14 +353,11 @@
         .glow-line-container {
             position: absolute;
             bottom: -5px;
-            /* Sesuaikan posisi di bawah teks */
             left: 50%;
             transform: translateX(-50%);
             width: 100%;
             max-width: 400px;
-            /* Lebar garis glow */
             height: 3px;
-            /* Ketebalan garis */
             overflow: hidden;
             z-index: 2;
         }
@@ -380,7 +369,6 @@
             width: 0%;
             animation: glow-scan 4s infinite cubic-bezier(0.8, 0.1, 0.2, 0.9);
             animation-delay: 2s;
-            /* Tunda sedikit agar tidak langsung muncul */
         }
 
         @keyframes glow-scan {
@@ -673,58 +661,127 @@
             font-family: 'Fira Code', monospace;
         }
 
-        /* Contact & Footer */
-        .contact-section {
-            background: var(--card-bg);
-            text-align: center;
+        /* === FOOTER YANG DISEMPURNAKAN === */
+        .site-footer {
+            background-color: var(--code-bg);
             padding: 4rem 0 2rem;
+            border-top: 2px solid var(--border-color);
         }
 
-        .social-links a {
+        .footer-container {
+            display: grid;
+            /* Menggunakan grid untuk tata letak yang fleksibel */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            /* Auto-fit untuk responsivitas */
+            gap: 2.5rem;
+            /* Jarak antar kolom */
+        }
+
+        .footer-column .logo {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-family: 'Fira Code', monospace;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .footer-column .logo span {
+            color: var(--font-color);
+        }
+
+        .footer-column h4 {
+            font-family: 'Fira Code', monospace;
+            color: var(--primary-color);
+            margin-bottom: 1.2rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-column p,
+        .footer-column ul {
+            font-size: 0.95rem;
+            color: var(--font-color);
+            opacity: 0.8;
+        }
+
+        .footer-column p.footer-contact-info {
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-column ul a {
             color: var(--font-color);
             text-decoration: none;
-            margin: 0 1rem;
-            font-size: 1.8rem;
+            transition: color 0.3s ease, padding-left 0.3s ease;
+        }
+
+        .footer-column ul a:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+        }
+
+        .footer-socials {
+            margin-top: 1.5rem;
+            /* Jarak dari konten di atasnya */
+        }
+
+        .footer-socials a {
+            color: var(--font-color);
+            font-size: 1.5rem;
+            margin-right: 1.2rem;
             transition: color 0.3s ease, transform 0.3s ease;
             display: inline-block;
         }
 
-        .social-links a:hover {
+        .footer-socials a:last-child {
+            margin-right: 0;
+        }
+
+        .footer-socials a:hover {
             color: var(--primary-color);
-            transform: translateY(-5px);
+            transform: translateY(-3px);
         }
 
-        .contact-section .section-title {
-            margin-bottom: 1rem;
-        }
-
-        .contact-section p {
-            margin-bottom: 2rem;
-        }
-
-        .git-commit-msg {
+        .footer-bottom {
             margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             font-family: 'Fira Code', monospace;
             font-size: 0.9rem;
-            color: #888;
-            background-color: var(--code-bg);
-            padding: 0.8rem;
-            border-radius: 5px;
-            display: inline-block;
-            border: 1px solid var(--border-color);
+            color: var(--font-color);
+            opacity: 0.6;
         }
 
-        .git-commit-msg span {
+        #back-to-top {
+            color: var(--font-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        #back-to-top:hover {
             color: var(--primary-color);
         }
 
-        .main-footer {
-            padding: 1.5rem;
-            text-align: center;
-            font-size: 0.9rem;
-            font-family: 'Fira Code', monospace;
-            background-color: var(--code-bg);
-            border-top: 1px solid var(--border-color);
+        @media (max-width: 768px) {
+            .footer-container {
+                text-align: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+            }
         }
     </style>
 </head>
@@ -913,25 +970,45 @@
         </section>
     </main>
 
-    <footer id="contact" class="contact-section">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
-            <p data-aos="fade-up" data-aos-delay="100">Let's build something amazing together. Find me on:</p>
-            <div class="social-links" data-aos="fade-up" data-aos-delay="200">
-                <a href="#" target="_blank"><i class="fa-brands fa-github"></i></a>
-                <a href="#" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="#" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+    <footer id="contact" class="site-footer">
+        <div class="container footer-container">
+            <div class="footer-column" data-aos="fade-up">
+                <a href="#" class="logo"><span>&lt;</span>YourName<span>/&gt;</span></a>
+                <p>Web developer passionate about creating modern and interactive web applications. Let's build
+                    something amazing together.</p>
             </div>
-            <div class="git-commit-msg" data-aos="fade-up" data-aos-delay="300">
-                <span>git commit -m</span> "Crafted with passion, coffee, and code."
+
+            <div class="footer-column" data-aos="fade-up" data-aos-delay="100">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Journey</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column" data-aos="fade-up" data-aos-delay="200">
+                <h4>Get In Touch</h4>
+                <p class="footer-contact-info">
+                    <i class="fa-solid fa-envelope"></i> your.email@example.com
+                </p>
+                <p>Find me on social media:</p>
+                <div class="footer-socials">
+                    <a href="#" target="_blank" aria-label="Github"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 Your Name. All Rights Reserved.</p>
+                <a href="#" id="back-to-top">Back to Top <i class="fas fa-arrow-up"></i></a>
             </div>
         </div>
     </footer>
-
-    <div class="main-footer" data-aos="fade-in">
-        &copy; 2025 Your Name. All Rights Reserved.
-    </div>
-
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script>
         // --- PRELOADER SCRIPT ---
@@ -946,7 +1023,7 @@
             if (isPageLoaded && isAnimationComplete) {
                 setTimeout(() => {
                     preloader.classList.add('hidden');
-                }, 200); // Short delay before fading out
+                }, 200);
             }
         }
 
@@ -957,43 +1034,41 @@
                 setTimeout(typeLoader, 120);
             } else {
                 isAnimationComplete = true;
-                tryHidePreloader(); // Check if page is also loaded
+                tryHidePreloader();
             }
         }
 
-        typeLoader(); // Start typing animation immediately
+        typeLoader();
 
         window.addEventListener('load', () => {
             isPageLoaded = true;
-            tryHidePreloader(); // Check if animation is also complete
+            tryHidePreloader();
         });
 
         // --- BINARY BACKGROUND SCRIPT ---
         const binaryBackground = document.getElementById('binary-background');
-        const characters = '01'; // Hanya 0 dan 1
-        const numCharacters = 100; // Jumlah karakter yang jatuh
+        const characters = '01';
+        const numCharacters = 100;
 
         function createBinaryCharacter() {
             const span = document.createElement('span');
             span.textContent = characters[Math.floor(Math.random() * characters.length)];
             span.style.left = Math.random() * 100 + 'vw';
-            span.style.animationDuration = Math.random() * 5 + 5 + 's'; // Antara 5-10 detik
-            span.style.animationDelay = Math.random() * 5 + 's'; // Tunda agar muncul secara acak
+            span.style.animationDuration = Math.random() * 5 + 5 + 's';
+            span.style.animationDelay = Math.random() * 5 + 's';
             binaryBackground.appendChild(span);
 
-            // Hapus elemen setelah animasi selesai untuk mencegah DOM membesar
             span.addEventListener('animationend', () => {
                 span.remove();
             });
         }
 
-        // Buat karakter biner secara berkala
-        setInterval(createBinaryCharacter, 300); // Setiap 300ms tambahkan karakter baru
+        setInterval(createBinaryCharacter, 300);
         for (let j = 0; j < numCharacters; j++) {
-            createBinaryCharacter(); // Buat beberapa karakter awal agar langsung terlihat
+            createBinaryCharacter();
         }
 
-        // Typing animation script for hero
+        // --- TYPING ANIMATION SCRIPT ---
         const typedTextSpan = document.getElementById("typed-output");
         const textArray = ["web applications.", "interactive experiences.", "beautiful websites.", "things for the web."];
         const typingDelay = 100;
@@ -1024,7 +1099,7 @@
             }
         }
 
-        // Navbar scroll effect script
+        // --- NAVBAR SCROLL SCRIPT ---
         const nav = document.querySelector('.navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -1034,7 +1109,7 @@
             }
         });
 
-        // THEME SWITCHER SCRIPT
+        // --- THEME SWITCHER SCRIPT ---
         const themeToggle = document.getElementById('theme-toggle');
         const body = document.body;
 
@@ -1051,13 +1126,12 @@
             localStorage.setItem('theme', isLight ? 'light' : 'dark');
         });
 
-        // --- NAVBAR IMPROVEMENTS SCRIPT ---
+        // --- NAVBAR MOBILE & ACTIVE LINK SCRIPT ---
         const navToggle = document.getElementById('nav-toggle');
         const navMenu = document.querySelector('.nav-menu');
         const navLinks = document.querySelectorAll('.nav-menu ul li a');
-        const sections = document.querySelectorAll('main .section');
+        const sections = document.querySelectorAll('main .section, footer.site-footer');
 
-        // Hamburger menu toggle
         navToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
             const icon = navToggle.querySelector('i');
@@ -1065,7 +1139,6 @@
             icon.classList.toggle('fa-times');
         });
 
-        // Close mobile menu when a link is clicked
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 if (navMenu.classList.contains('active')) {
@@ -1077,27 +1150,20 @@
             });
         });
 
-        // Active link highlighting on scroll
         const highlightNav = () => {
             let currentSectionId = '';
-            const headerHeight = document.querySelector('.navbar').offsetHeight;
+            const headerHeight = document.querySelector('.navbar').offsetHeight + 20;
 
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - headerHeight) {
+                if (window.pageYOffset >= sectionTop - headerHeight) {
                     currentSectionId = section.getAttribute('id');
                 }
             });
 
-            // Handle contact section separately as it's a footer
-            const contactSection = document.querySelector('#contact');
-            if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 50) {
-                currentSectionId = 'contact';
-            }
-
             navLinks.forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('href').substring(1) === currentSectionId) {
+                if (link.getAttribute('href') === '#' + currentSectionId) {
                     link.classList.add('active');
                 }
             });
@@ -1105,19 +1171,31 @@
 
         window.addEventListener('scroll', highlightNav);
 
-        // Check for saved theme on page load & run initial scripts
+        // --- BACK TO TOP SCRIPT ---
+        const backToTopButton = document.getElementById('back-to-top');
+        if (backToTopButton) {
+            backToTopButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // --- INITIALIZATION SCRIPT ---
         document.addEventListener("DOMContentLoaded", function () {
-            if (textArray.length) setTimeout(type, newTextDelay + 250);
+            if (textArray.length > 0) setTimeout(type, newTextDelay + 250);
 
             const savedTheme = localStorage.getItem('theme') || 'dark';
             applyTheme(savedTheme);
 
             highlightNav();
             AOS.init({
-                duration: 800, // Durasi animasi
-                easing: 'ease-out-quad', // Jenis easing
-                once: true, // Animasi hanya berjalan sekali saat elemen muncul
-                mirror: false // Tidak ada animasi saat scrolling ke atas
+                duration: 800,
+                easing: 'ease-out-quad',
+                once: true,
+                mirror: false
             });
         });
     </script>
