@@ -1,0 +1,1951 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entwickler Indonesia - Developer and IT Consultant</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <style>
+        /* Google Fonts, Reset, Variables */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.7;
+        }
+
+        body.no-scroll {
+            overflow: hidden;
+        }
+
+        :root {
+            --entwickler-green: #76c715;
+            --entwickler-blue: #00b09b;
+            --dark-text: #2c3e50;
+            --light-text: #6c757d;
+            --background-light: #f8f9fa;
+            --white-color: #ffffff;
+            --footer-dark: #1d2b38;
+            --footer-darker: #131c25;
+            --box-shadow-light: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --box-shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15);
+            --box-shadow-modern: 0px 8px 32px rgba(44, 62, 80, 0.12);
+            --box-shadow-modern-hover: 0px 12px 40px rgba(44, 62, 80, 0.18);
+        }
+
+        /* Utilities & Global Styles */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            overflow: visible;
+            padding: 0 2rem;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark-text);
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3.5rem;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--entwickler-green), var(--entwickler-blue));
+            border-radius: 2px;
+        }
+
+        section {
+            padding: 6rem 0;
+            overflow: hidden;
+        }
+
+        .section-light {
+            background-color: var(--background-light);
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: var(--white-color);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(8px);
+        }
+
+        .navbar .logo img {
+            height: 55px;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .navbar .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .navbar .nav-links li a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 600;
+            position: relative;
+            transition: color 0.3s ease;
+            padding-bottom: 5px;
+        }
+
+        .navbar .nav-links li a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(to right, var(--entwickler-green), var(--entwickler-blue));
+            left: 0;
+            bottom: 0;
+            transition: width 0.3s ease-out;
+            border-radius: 2px;
+        }
+
+        .navbar .nav-links li a:hover,
+        .navbar .nav-links li a:hover::after,
+        .navbar .nav-links li a.active::after {
+            color: var(--entwickler-green);
+            width: 100%;
+        }
+
+        .hamburger-menu {
+            display: none;
+            font-size: 1.8rem;
+            color: var(--dark-text);
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1002;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 120px;
+            padding-bottom: 80px;
+            background: linear-gradient(135deg, rgba(245, 255, 235, 0.9), rgba(220, 255, 250, 0.9));
+            display: flex;
+            align-items: center;
+            min-height: 90vh;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .hero-text {
+            text-align: left;
+        }
+
+        .hero-text h1 {
+            color: var(--dark-text);
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            margin: 1.5rem 0 2.5rem 0;
+            color: var(--light-text);
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 500px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* Buttons */
+        .cta-button {
+            display: inline-block;
+            padding: 14px 35px;
+            background: linear-gradient(to right, var(--entwickler-green), var(--entwickler-blue));
+            color: var(--white-color);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.15rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--box-shadow-light);
+            border: 2px solid transparent;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow-hover);
+        }
+
+        .btn-outline {
+            display: inline-block;
+            padding: 13px 35px;
+            background: transparent;
+            color: var(--dark-text);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid #ddd;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--entwickler-green);
+            color: var(--entwickler-green);
+            transform: translateY(-3px);
+        }
+
+        .submit-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            text-align: center;
+            color: var(--white-color);
+            background: linear-gradient(to right, var(--entwickler-green), var(--entwickler-blue));
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            box-shadow: var(--box-shadow-hover);
+            transform: translateY(-3px);
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .intro-text h2 {
+            text-align: left;
+            font-size: 2.8rem;
+            line-height: 1.3;
+        }
+
+        .intro-text h2::after {
+            display: none;
+        }
+
+        .intro-text p {
+            font-size: 1.1rem;
+            color: var(--light-text);
+            margin-bottom: 2rem;
+        }
+
+        .intro-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .intro-image img {
+            width: 100%;
+            border-radius: 12px;
+        }
+
+        /* --- CSS BAGIAN KEUNGGULAN --- */
+        #keunggulan {
+            background-color: var(--white-color);
+        }
+
+        .keunggulan-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .keunggulan-card {
+            padding: 2rem 1.5rem;
+            background-color: var(--white-color);
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: var(--box-shadow-light);
+            width: 260px;
+        }
+
+        .keunggulan-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow-hover);
+        }
+
+        .keunggulan-card .icon {
+            font-size: 3rem;
+            color: var(--entwickler-green);
+            margin-bottom: 1rem;
+        }
+
+        .keunggulan-card h4 {
+            font-size: 1.1rem;
+            color: var(--dark-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .keunggulan-card p {
+            font-size: 0.9rem;
+            color: var(--light-text);
+            line-height: 1.6;
+        }
+
+        /* CSS Bagian Harga Modern */
+        .pricing-header-text {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem auto;
+        }
+
+        .pricing-header-text p {
+            color: var(--light-text);
+            font-size: 1.1rem;
+        }
+
+        .pricing-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .pricing-tabs .tab-btn {
+            background-color: #e9ecef;
+            color: var(--dark-text);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-tabs .tab-btn:hover {
+            background-color: #ced4da;
+            transform: translateY(-2px);
+        }
+
+        .pricing-tabs .tab-btn.active {
+            background: linear-gradient(to right, var(--entwickler-green), var(--entwickler-blue));
+            color: var(--white-color);
+            box-shadow: 0 4px 15px color-mix(in srgb, var(--entwickler-blue) 40%, transparent);
+            transform: translateY(-2px);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .pricing-slider-container {
+            position: relative;
+            padding: 1rem 40px;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: var(--entwickler-blue);
+            transform: scale(0.8);
+        }
+
+        .swiper-button-next:after,
+        .swiper-button-prev:after {
+            font-weight: 900 !important;
+        }
+
+        .swiper-wrapper {
+            padding-bottom: 1rem;
+        }
+
+        .pricing-card {
+            background: var(--white-color);
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            box-shadow: var(--box-shadow-modern);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            border: 1px solid #f0f0f0;
+            height: auto;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow-modern-hover);
+        }
+
+        .pricing-header {
+            text-align: center;
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .pricing-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(to right, var(--entwickler-green), var(--entwickler-blue));
+            opacity: 0.5;
+        }
+
+        .pricing-header.popular::after {
+            opacity: 1;
+        }
+
+        .pricing-header h4 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0.5rem 0;
+            color: var(--dark-text);
+        }
+
+        .pricing-price span {
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+            font-size: 0.95rem;
+        }
+
+        .pricing-features li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .pricing-features i {
+            color: var(--entwickler-green);
+            margin-right: 12px;
+            margin-top: 5px;
+            font-size: 0.9rem;
+        }
+
+        .extended-features {
+            list-style: none;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, margin-top 0.5s ease-in-out;
+            padding-left: 0;
+        }
+
+        .pricing-card.expanded .extended-features {
+            max-height: 500px;
+            margin-top: 1.5rem;
+        }
+
+        .toggle-details-btn {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            color: var(--dark-text);
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            width: 100%;
+            padding: 12px 0;
+            margin-top: 1.5rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-details-btn:hover {
+            background: #e9ecef;
+            color: var(--entwickler-blue);
+        }
+
+        .toggle-details-btn i {
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .pricing-card.expanded .toggle-details-btn i {
+            transform: rotate(180deg);
+        }
+
+        .pricing-button {
+            margin-top: auto;
+            width: 100%;
+        }
+
+        /* Portfolio */
+        .portfolio-filters {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .portfolio-filters button {
+            background: none;
+            border: 2px solid #ddd;
+            border-radius: 50px;
+            padding: 10px 25px;
+            margin: 0 8px;
+            font: 600 1rem 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-filters button:hover {
+            border-color: var(--entwickler-green);
+            color: var(--entwickler-green);
+        }
+
+        .portfolio-filters button.active {
+            background: linear-gradient(to right, var(--entwickler-green), var(--entwickler-blue));
+            color: var(--white-color);
+            border-color: transparent;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: var(--box-shadow-light);
+            cursor: pointer;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-overlay h3 {
+            color: var(--white-color);
+        }
+
+        .portfolio-overlay span {
+            color: var(--entwickler-green);
+        }
+
+        /* --- Creative Section (UPDATED) --- */
+        .service-card {
+            background: var(--white-color);
+            padding: 1.5rem;
+            /* PADDING DIKURANGI */
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: var(--box-shadow-light);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow-hover);
+        }
+
+        .service-card .icon {
+            font-size: 3rem;
+            /* DIKECILKAN */
+            margin-bottom: 1rem;
+            color: var(--entwickler-green);
+        }
+
+        .service-card h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+            /* DIKECILKAN */
+        }
+
+        .service-card p {
+            font-size: 0.9rem;
+            flex-grow: 1;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            /* DIKECILKAN */
+            gap: 1.5rem;
+            /* DIKURANGI */
+        }
+
+        .ads-content {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .ads-image img {
+            width: 100%;
+            border-radius: 12px;
+        }
+
+        .ads-text h3 {
+            font-size: 1.8rem;
+        }
+
+        .ads-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .ads-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .ads-list i {
+            color: var(--white-color);
+            background: linear-gradient(to right, var(--entwickler-green), var(--entwickler-blue));
+            width: 30px;
+            height: 30px;
+            font-size: 0.9rem;
+            border-radius: 50%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        /* FAQ Section */
+        #faq {
+            position: relative;
+            background-image: url('https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            z-index: 1;
+        }
+
+        #faq::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(13, 28, 37, 0.85);
+            z-index: -1;
+        }
+
+        #faq h2 {
+            color: var(--white-color);
+        }
+
+        #faq h2::after {
+            background: linear-gradient(to right, var(--entwickler-green), var(--entwickler-blue));
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .faq-item {
+            background-color: var(--white-color);
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            box-shadow: var(--box-shadow-light);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background: none;
+            border: none;
+            text-align: left;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark-text);
+        }
+
+        .faq-question i {
+            font-size: 1.2rem;
+            color: var(--entwickler-blue);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out, padding 0.4s ease;
+        }
+
+        .faq-answer p {
+            padding: 0 1.5rem 1.25rem;
+            color: var(--light-text);
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .team-card {
+            flex: 0 1 280px;
+            background: var(--white-color);
+            border-radius: 12px;
+            box-shadow: var(--box-shadow-light);
+            text-align: center;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow-hover);
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            object-position: top center;
+        }
+
+        .team-content {
+            padding: 1.2rem;
+        }
+
+        .team-content h3 {
+            font-size: 1.2rem;
+        }
+
+        .team-role {
+            color: var(--entwickler-green);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .team-description {
+            font-size: 0.85rem;
+        }
+
+        .team-socials {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .team-socials a {
+            color: var(--light-text);
+            margin: 0 0.5rem;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .team-socials a:hover {
+            color: var(--entwickler-blue);
+        }
+
+        /* Contact Section */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font: 1rem 'Poppins', sans-serif;
+            transition: border-color 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--entwickler-green);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info i {
+            font-size: 1.2rem;
+            margin-right: 1rem;
+            margin-top: 5px;
+            color: var(--entwickler-green);
+        }
+
+        .map-container {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow-light);
+            height: 250px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Footer */
+        .footer {
+            clip-path: path('M0,50 C250,100 450,0 720,50 C990,100 1190,0 1440,50 V1000 H0 Z');
+            background: radial-gradient(circle at 15% 15%, color-mix(in srgb, var(--entwickler-blue) 25%, transparent), transparent 40%), linear-gradient(135deg, var(--footer-dark), var(--footer-darker));
+            color: var(--white-color);
+            padding: 8rem 0 4rem;
+            font-size: 0.95rem;
+            margin-top: -50px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .footer-col {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .footer.visible .footer-col:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+
+        .footer.visible .footer-col:nth-child(2) {
+            transition-delay: 0.2s;
+        }
+
+        .footer.visible .footer-col:nth-child(3) {
+            transition-delay: 0.3s;
+        }
+
+        .footer.visible .footer-col:nth-child(4) {
+            transition-delay: 0.4s;
+        }
+
+        .footer.visible .footer-col {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .footer-logo img {
+            height: 60px;
+            margin-bottom: 1rem;
+        }
+
+        .footer-content h4 {
+            color: var(--entwickler-green);
+            font-size: 1.2rem;
+        }
+
+        .footer-content ul {
+            list-style: none;
+        }
+
+        .footer-content ul li {
+            margin-bottom: 0.7rem;
+        }
+
+        .footer-content ul li a {
+            color: var(--white-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+
+        .footer-content ul li a:hover {
+            color: var(--entwickler-blue);
+            opacity: 1;
+            padding-left: 8px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.8;
+        }
+
+        .social-icons a {
+            color: white;
+            margin-right: 15px;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--entwickler-green);
+            transform: scale(1.2) translateY(-3px);
+        }
+
+        /* Back to top & Section animation */
+        .back-to-top {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: linear-gradient(45deg, var(--entwickler-green), var(--entwickler-blue));
+            color: var(--white-color);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+        }
+
+        section {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media(max-width: 1100px) {
+            .navbar ul li {
+                margin-left: 1.5rem;
+            }
+        }
+
+        @media(max-width: 992px) {
+
+            .hero-grid,
+            .intro-grid,
+            .ads-content,
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-text,
+            .intro-text {
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-image {
+                order: -1;
+                margin-bottom: 2rem;
+            }
+
+            .intro-text h2 {
+                font-size: 2.2rem;
+                text-align: center;
+            }
+
+            .intro-text p,
+            .pricing-header-text p {
+                text-align: center;
+            }
+
+            .intro-buttons {
+                justify-content: center;
+            }
+
+            .intro-image,
+            .ads-image {
+                display: none;
+            }
+        }
+
+        @media(max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+
+            .hamburger-menu {
+                display: block;
+            }
+
+            .navbar .nav-links {
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100vh;
+                background: linear-gradient(135deg, var(--entwickler-green), var(--entwickler-blue));
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transform: translateX(100%);
+                transition: transform 0.5s ease-in-out;
+            }
+
+            .navbar .nav-links.nav-active {
+                transform: translateX(0);
+            }
+
+            .navbar .nav-links li {
+                margin: 2rem 0;
+            }
+
+            .navbar .nav-links li a {
+                color: var(--white-color);
+                font-size: 1.5rem;
+                text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            }
+
+            .navbar .nav-links li a::after {
+                display: none;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            section {
+                padding: 4rem 0;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                text-align: center;
+            }
+
+            .pricing-slider-container {
+                padding: 0;
+            }
+
+            .swiper-button-next,
+            .swiper-button-prev {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar" id="navbar">
+            <div class="logo"> <a href="#home"><img src="https://i.ibb.co/Cbf9rV7/unnamed.png"
+                        alt="Entwickler Logo"></a> </div>
+            <ul class="nav-links">
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#harga">HARGA</a></li>
+                <li><a href="#portfolio">PORTOFOLIO</a></li>
+                <li><a href="#creative">CREATIVE</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#team">TIM</a></li>
+                <li><a href="#contact">KONTAK</a></li>
+            </ul>
+            <button class="hamburger-menu" aria-label="Buka Menu"> <i class="fas fa-bars"></i> </button>
+        </nav>
+    </header>
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-text">
+                        <h1>Jasa Pembuatan Website Profesional & Terpercaya</h1>
+                        <p>Wujudkan citra bisnis yang kredibel dan modern dengan solusi website premium, fitur lengkap,
+                            dan performa cepat.</p>
+                        <a href="#harga" class="cta-button">Lihat Paket Harga</a>
+                    </div>
+                    <div class="hero-image"> <img src="https://i.imgur.com/uG5sXb5.png"
+                            alt="Jasa Pembuatan Website Profesional"> </div>
+                </div>
+            </div>
+        </section>
+        <section id="intro">
+            <div class="container">
+                <div class="intro-grid">
+                    <div class="intro-text">
+                        <h2>Tingkatkan Bisnis Anda ke Level Berikutnya</h2>
+                        <p>Kami bukan hanya membuat website, kami membangun jembatan digital antara bisnis Anda dan
+                            jutaan pelanggan potensial di luar sana. Dengan teknologi terkini dan tim ahli, kami siap
+                            membantu Anda bertumbuh.</p>
+                        <div class="intro-buttons">
+                            <a href="#contact" class="submit-btn">Konsultasi Gratis</a>
+                            <a href="#portfolio" class="btn-outline">Lihat Portofolio</a>
+                        </div>
+                    </div>
+                    <div class="intro-image"> <img src="https://i.imgur.com/wVQa5pW.jpg"
+                            alt="Tim profesional membuat website"> </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="keunggulan" class="section-light">
+            <div class="container">
+                <h2>Mengapa Membuat Website di Sini?</h2>
+                <div class="keunggulan-grid">
+                    <div class="keunggulan-card">
+                        <div class="icon"><i class="fas fa-rocket"></i></div>
+                        <h4>Proses Cepat</h4>
+                        <p>Website Anda siap online hanya dalam beberapa hari kerja, tanpa proses yang rumit.</p>
+                    </div>
+                    <div class="keunggulan-card">
+                        <div class="icon"><i class="fas fa-mobile-alt"></i></div>
+                        <h4>Mobile Friendly</h4>
+                        <p>Tampilan website dijamin responsif dan optimal di semua perangkat, baik desktop maupun
+                            mobile.</p>
+                    </div>
+                    <div class="keunggulan-card">
+                        <div class="icon"><i class="fas fa-shield-alt"></i></div>
+                        <h4>Keamanan Terjamin</h4>
+                        <p>Kami melengkapi website Anda dengan SSL gratis untuk enkripsi data dan keamanan terbaik.</p>
+                    </div>
+                    <div class="keunggulan-card">
+                        <div class="icon"><i class="fas fa-tachometer-alt"></i></div>
+                        <h4>Performa Cepat</h4>
+                        <p>Dibangun di atas infrastruktur server terbaik untuk memastikan website Anda dapat diakses
+                            dengan cepat.</p>
+                    </div>
+                    <div class="keunggulan-card">
+                        <div class="icon"><i class="fas fa-headset"></i></div>
+                        <h4>Dukungan Penuh</h4>
+                        <p>Tim support kami selalu siap membantu Anda jika mengalami kendala atau butuh panduan.</p>
+                    </div>
+                    <div class="keunggulan-card">
+                        <div class="icon"><i class="fas fa-wallet"></i></div>
+                        <h4>Harga Terjangkau</h4>
+                        <p>Dapatkan website profesional dengan fitur lengkap tanpa harus mengeluarkan biaya yang besar.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="harga">
+            <div class="container">
+                <div class="pricing-header-text">
+                    <h2>Pilih Paket yang Cocok untuk Website Anda</h2>
+                    <p>Kami menyediakan berbagai pilihan paket yang dirancang untuk memenuhi setiap kebutuhan, mulai
+                        dari profil personal, UMKM, hingga skala korporat.</p>
+                </div>
+                <div class="pricing-tabs">
+                    <button class="tab-btn active" data-tab="umkm">UMKM & UKM</button>
+                    <button class="tab-btn" data-tab="bisnis">Corporate & Bisnis</button>
+                    <button class="tab-btn" data-tab="toko-online">Toko Online</button>
+                    <button class="tab-btn" data-tab="custom">Website Custom</button>
+                </div>
+                <div id="umkm" class="tab-content active">
+                    <div class="pricing-slider-container">
+                        <div class="swiper" data-swiper-id="umkm">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="pricing-card">
+                                        <div class="pricing-header">
+                                            <h4>Paket UMKM 1</h4>
+                                            <div class="pricing-price">Rp 525<span>rb</span></div>
+                                            <p class="renewal-price">Perpanjangan Rp 500rb/thn</p>
+                                        </div>
+                                        <ul class="pricing-features">
+                                            <li><i class="fas fa-check-circle"></i> 1 Halaman Website</li>
+                                            <li><i class="fas fa-check-circle"></i> Free Domain .com</li>
+                                            <li><i class="fas fa-check-circle"></i> Basic Landing Page Design</li>
+                                        </ul>
+                                        <button class="toggle-details-btn">Selengkapnya <i
+                                                class="fas fa-chevron-down"></i></button>
+                                        <ul class="extended-features">
+                                            <li><i class="fas fa-check-circle"></i> Akses Dashboard Website</li>
+                                            <li><i class="fas fa-check-circle"></i> Tombol WhatsApp</li>
+                                            <li><i class="fas fa-check-circle"></i> Integrasi Sosial Media</li>
+                                            <li><i class="fas fa-check-circle"></i> Mobile Friendly</li>
+                                        </ul>
+                                        <a href="#contact" class="submit-btn pricing-button">Pilih Paket</a>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="pricing-card">
+                                        <div class="pricing-header popular">
+                                            <h4>Paket UMKM 2</h4>
+                                            <div class="pricing-price">Rp 1<span>jt</span></div>
+                                            <p class="renewal-price">Perpanjangan Rp 700rb/thn</p>
+                                        </div>
+                                        <ul class="pricing-features">
+                                            <li><i class="fas fa-check-circle"></i> 3 Halaman Website</li>
+                                            <li><i class="fas fa-check-circle"></i> Free Domain .com</li>
+                                            <li><i class="fas fa-check-circle"></i> Basic Web Design</li>
+                                            <li><i class="fas fa-check-circle"></i> 1 Akun Email Domain</li>
+                                        </ul>
+                                        <button class="toggle-details-btn">Selengkapnya <i
+                                                class="fas fa-chevron-down"></i></button>
+                                        <ul class="extended-features">
+                                            <li><i class="fas fa-check-circle"></i> SEO Optimasi (Keyword & Page)</li>
+                                            <li><i class="fas fa-check-circle"></i> Google Maps & Analytics</li>
+                                            <li><i class="fas fa-check-circle"></i> Semua fitur Paket UMKM 1</li>
+                                        </ul>
+                                        <a href="#contact" class="submit-btn pricing-button">Pilih Paket</a>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="pricing-card">
+                                        <div class="pricing-header">
+                                            <h4>Paket UMKM 3</h4>
+                                            <div class="pricing-price">Rp 1.5<span>jt</span></div>
+                                            <p class="renewal-price">Perpanjangan Rp 800rb/thn</p>
+                                        </div>
+                                        <ul class="pricing-features">
+                                            <li><i class="fas fa-check-circle"></i> 5 Halaman Website</li>
+                                            <li><i class="fas fa-check-circle"></i> Shared Hosting 1 Thn</li>
+                                            <li><i class="fas fa-check-circle"></i> Free Logo Design</li>
+                                        </ul>
+                                        <button class="toggle-details-btn">Selengkapnya <i
+                                                class="fas fa-chevron-down"></i></button>
+                                        <ul class="extended-features">
+                                            <li><i class="fas fa-check-circle"></i> Advanced Copy Writing</li>
+                                            <li><i class="fas fa-check-circle"></i> Video Modul Penggunaan</li>
+                                            <li><i class="fas fa-check-circle"></i> Semua fitur Paket UMKM 2</li>
+                                        </ul>
+                                        <a href="#contact" class="submit-btn pricing-button">Pilih Paket</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </div>
+                <div id="bisnis" class="tab-content">
+                    <div class="pricing-slider-container">
+                        <div class="swiper" data-swiper-id="bisnis">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="pricing-card">
+                                        <div class="pricing-header">
+                                            <h4>Paket Bisnis 1</h4>
+                                            <div class="pricing-price">Rp 2.5<span>jt</span></div>
+                                            <p class="renewal-price">Perpanjangan Rp 1jt/thn</p>
+                                        </div>
+                                        <ul class="pricing-features">
+                                            <li><i class="fas fa-check-circle"></i> 10 Halaman Website</li>
+                                            <li><i class="fas fa-check-circle"></i> Free Domain .com / .id</li>
+                                            <li><i class="fas fa-check-circle"></i> Custom Web Design</li>
+                                        </ul>
+                                        <button class="toggle-details-btn">Selengkapnya <i
+                                                class="fas fa-chevron-down"></i></button>
+                                        <ul class="extended-features">
+                                            <li><i class="fas fa-check-circle"></i> 5 Akun Email Domain</li>
+                                            <li><i class="fas fa-check-circle"></i> 3 Artikel Blog</li>
+                                            <li><i class="fas fa-check-circle"></i> Semua fitur Paket UMKM 3</li>
+                                        </ul>
+                                        <a href="#contact" class="submit-btn pricing-button">Pilih Paket</a>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="pricing-card">
+                                        <div class="pricing-header popular">
+                                            <h4>Paket Bisnis 2</h4>
+                                            <div class="pricing-price">Rp 5<span>jt</span></div>
+                                            <p class="renewal-price">Perpanjangan Rp 2jt/thn</p>
+                                        </div>
+                                        <ul class="pricing-features">
+                                            <li><i class="fas fa-check-circle"></i> 20 Halaman Website</li>
+                                            <li><i class="fas fa-check-circle"></i> Dedicated Hosting 1 Thn</li>
+                                            <li><i class="fas fa-check-circle"></i> Setting Iklan Google Ads</li>
+                                        </ul>
+                                        <button class="toggle-details-btn">Selengkapnya <i
+                                                class="fas fa-chevron-down"></i></button>
+                                        <ul class="extended-features">
+                                            <li><i class="fas fa-check-circle"></i> Akses Panel Hosting</li>
+                                            <li><i class="fas fa-check-circle"></i> 6 Artikel Blog</li>
+                                            <li><i class="fas fa-check-circle"></i> Semua fitur Paket Bisnis 1</li>
+                                        </ul>
+                                        <a href="#contact" class="submit-btn pricing-button">Pilih Paket</a>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="pricing-card">
+                                        <div class="pricing-header">
+                                            <h4>Paket Bisnis 3</h4>
+                                            <div class="pricing-price">Rp 7.5<span>jt</span></div>
+                                            <p class="renewal-price">Perpanjangan Rp 3.5jt/thn</p>
+                                        </div>
+                                        <ul class="pricing-features">
+                                            <li><i class="fas fa-check-circle"></i> 30+ Halaman Website</li>
+                                            <li><i class="fas fa-check-circle"></i> Free Domain .co.id</li>
+                                            <li><i class="fas fa-check-circle"></i> Live Chat & Multi Bahasa</li>
+                                        </ul>
+                                        <button class="toggle-details-btn">Selengkapnya <i
+                                                class="fas fa-chevron-down"></i></button>
+                                        <ul class="extended-features">
+                                            <li><i class="fas fa-check-circle"></i> Aktivasi Iklan Google & Meta</li>
+                                            <li><i class="fas fa-check-circle"></i> Web Security & Activity Log</li>
+                                            <li><i class="fas fa-check-circle"></i> Semua fitur Paket Bisnis 2</li>
+                                        </ul>
+                                        <a href="#contact" class="submit-btn pricing-button">Pilih Paket</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </div>
+                <div id="toko-online" class="tab-content">
+                    <div class="pricing-slider-container">
+                        <div class="swiper" data-swiper-id="toko-online">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="pricing-card">
+                                        <div class="pricing-header">
+                                            <h4>Toko WA UMKM</h4>
+                                            <div class="pricing-price">Rp 2.5<span>jt</span></div>
+                                            <p class="renewal-price">Perpanjangan Rp 1jt/thn</p>
+                                        </div>
+                                        <ul class="pricing-features">
+                                            <li><i class="fas fa-check-circle"></i> 10 Halaman Website</li>
+                                            <li><i class="fas fa-check-circle"></i> Katalog Produk</li>
+                                            <li><i class="fas fa-check-circle"></i> Checkout Via WhatsApp</li>
+                                            <li><i class="fas fa-check-circle"></i> Upload 10 Produk</li>
+                                        </ul>
+                                        <button class="toggle-details-btn">Selengkapnya <i
+                                                class="fas fa-chevron-down"></i></button>
+                                        <ul class="extended-features">
+                                            <li><i class="fas fa-check-circle"></i> Fitur WooCommerce</li>
+                                            <li><i class="fas fa-check-circle"></i> Termasuk Fitur Paket Bisnis 1</li>
+                                        </ul>
+                                        <a href="#contact" class="submit-btn pricing-button">Pilih Paket</a>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="pricing-card">
+                                        <div class="pricing-header popular">
+                                            <h4>Toko Bisnis</h4>
+                                            <div class="pricing-price">Rp 3.5<span>jt</span></div>
+                                            <p class="renewal-price">Perpanjangan Rp 2jt/thn</p>
+                                        </div>
+                                        <ul class="pricing-features">
+                                            <li><i class="fas fa-check-circle"></i> 15 Halaman Website</li>
+                                            <li><i class="fas fa-check-circle"></i> Checkout Payment Gateway</li>
+                                            <li><i class="fas fa-check-circle"></i> Upload 20 Produk</li>
+                                        </ul>
+                                        <button class="toggle-details-btn">Selengkapnya <i
+                                                class="fas fa-chevron-down"></i></button>
+                                        <ul class="extended-features">
+                                            <li><i class="fas fa-check-circle"></i> Dedicated Hosting</li>
+                                            <li><i class="fas fa-check-circle"></i> Halaman Member & Cek Ongkir</li>
+                                            <li><i class="fas fa-check-circle"></i> Termasuk Fitur Toko WA</li>
+                                        </ul>
+                                        <a href="#contact" class="submit-btn pricing-button">Pilih Paket</a>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="pricing-card">
+                                        <div class="pricing-header">
+                                            <h4>Toko High</h4>
+                                            <div class="pricing-price">Rp 7.5<span>jt</span></div>
+                                            <p class="renewal-price">Perpanjangan Rp 3.5jt/thn</p>
+                                        </div>
+                                        <ul class="pricing-features">
+                                            <li><i class="fas fa-check-circle"></i> 30+ Halaman Website</li>
+                                            <li><i class="fas fa-check-circle"></i> Upload 40 Produk</li>
+                                            <li><i class="fas fa-check-circle"></i> Setting Google/Meta Ads</li>
+                                        </ul>
+                                        <button class="toggle-details-btn">Selengkapnya <i
+                                                class="fas fa-chevron-down"></i></button>
+                                        <ul class="extended-features">
+                                            <li><i class="fas fa-check-circle"></i> Live Chat & Multi Bahasa</li>
+                                            <li><i class="fas fa-check-circle"></i> Web Security & Activity Log</li>
+                                            <li><i class="fas fa-check-circle"></i> Termasuk Fitur Toko Bisnis</li>
+                                        </ul>
+                                        <a href="#contact" class="submit-btn pricing-button">Pilih Paket</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </div>
+                <div id="custom" class="tab-content">
+                    <div class="pricing-slider-container">
+                        <div class="swiper" data-swiper-id="custom">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="pricing-card">
+                                        <div class="pricing-header">
+                                            <h4>Website Custom</h4>
+                                            <div class="pricing-price"><span>Mulai dari</span> Rp 3<span>jt</span></div>
+                                            <p class="renewal-price">Harga fleksibel sesuai kebutuhan</p>
+                                        </div>
+                                        <ul class="pricing-features">
+                                            <li><i class="fas fa-check-circle"></i> Fitur & Desain Sesuai Permintaan
+                                            </li>
+                                            <li><i class="fas fa-check-circle"></i> Sistem Manajemen Konten (CMS) Khusus
+                                            </li>
+                                            <li><i class="fas fa-check-circle"></i> Integrasi API Pihak Ketiga</li>
+                                            <li><i class="fas fa-check-circle"></i> Skalabilitas Tinggi</li>
+                                            <li><i class="fas fa-check-circle"></i> Konsultasi Penuh dengan Tim
+                                                Developer</li>
+                                        </ul>
+                                        <a href="#contact" class="submit-btn pricing-button">Diskusikan Proyek</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="section-light">
+            <div class="container">
+                <h2>Portofolio Kami</h2>
+                <div class="portfolio-filters">
+                    <button class="active" data-filter="*">Semua</button>
+                    <button data-filter=".web">Web Development</button>
+                    <button data-filter=".mobile">Mobile Apps</button>
+                    <button data-filter=".consultant">Konsultasi</button>
+                </div>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item web"><img src="https://i.imgur.com/zL9jB9m.jpg" alt="Proyek Web 1">
+                        <div class="portfolio-overlay">
+                            <h3>Platform E-Commerce</h3><span>Web Development</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-item mobile"><img src="https://i.imgur.com/8Q2DT9N.jpg" alt="Proyek Mobile 1">
+                        <div class="portfolio-overlay">
+                            <h3>Aplikasi Booking Hotel</h3><span>Mobile Apps</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-item web"><img src="https://i.imgur.com/Qk1jY4H.jpg" alt="Proyek Web 2">
+                        <div class="portfolio-overlay">
+                            <h3>Website Company Profile</h3><span>Web Development</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-item consultant"><img src="https://i.imgur.com/wVQa5pW.jpg"
+                            alt="Proyek Konsultasi">
+                        <div class="portfolio-overlay">
+                            <h3>Transformasi Digital UKM</h3><span>Konsultasi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="creative">
+            <div class="container">
+                <h2>Jasa Digital Marketing (Creative)</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="icon"><i class="fas fa-share-square"></i></div>
+                        <h3>Pengelolaan Media Sosial</h3>
+                        <p>Kami membantu membangun dan mengelola kehadiran brand Anda di berbagai platform media sosial
+                            untuk meningkatkan engagement dan brand awareness.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="icon"><i class="fas fa-bullhorn"></i></div>
+                        <h3>Jasa Iklan Digital</h3>
+                        <p>Maksimalkan jangkauan bisnis Anda melalui kampanye iklan digital yang tertarget di platform
+                            seperti Meta (Facebook & Instagram) Ads.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="icon"><i class="fas fa-paint-brush"></i></div>
+                        <h3>Desain Konten Kreatif</h3>
+                        <p>Tim kreatif kami siap membuat konten visual yang menarik dan relevan untuk semua kebutuhan
+                            digital marketing Anda.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="google-ads" class="section-light">
+            <div class="container">
+                <h2>Jangkau Pelanggan Potensial dengan Jasa Google Ads</h2>
+                <div class="ads-content">
+                    <div class="ads-text">
+                        <h3>Strategi Iklan Tepat Sasaran</h3>
+                        <p>Kami merancang dan mengelola kampanye Google Ads yang efektif untuk membawa website Anda ke
+                            halaman pertama pencarian Google.</p>
+                        <ul class="ads-list">
+                            <li><i class="fas fa-check"></i> <strong>Riset Keyword Mendalam</strong></li>
+                            <li><i class="fas fa-check"></i> <strong>Pembuatan Copywriting Iklan yang Menjual</strong>
+                            </li>
+                            <li><i class="fas fa-check"></i> <strong>Optimalisasi Anggaran & Laporan Performa</strong>
+                            </li>
+                        </ul>
+                        <a href="#contact" class="submit-btn">Konsultasi Google Ads</a>
+                    </div>
+                    <div class="ads-image">
+                        <img src="https://i.imgur.com/uG5sXb5.png" alt="Google Ads Service">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq">
+            <div class="container">
+                <h2>Frequently Asked Questions (FAQ)</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Berapa lama proses pembuatan website?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Proses pembuatan website bervariasi tergantung pada kompleksitas dan paket yang Anda
+                                pilih. Untuk paket dasar UMKM, biasanya selesai dalam 3-7 hari kerja setelah semua
+                                materi (teks, gambar) kami terima. Untuk proyek custom, waktunya akan disesuaikan dengan
+                                kebutuhan.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Apakah saya akan mendapatkan akses untuk mengelola website sendiri?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Tentu saja! Setelah website selesai, kami akan memberikan Anda akses penuh ke dashboard
+                                admin. Kami juga menyediakan panduan video eksklusif agar Anda dapat dengan mudah
+                                memperbarui konten seperti teks, gambar, atau menambahkan artikel blog secara mandiri.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Apa saja yang perlu saya siapkan?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Anda perlu menyiapkan materi konten untuk website, seperti profil perusahaan, deskripsi
+                                layanan/produk, informasi kontak, serta gambar atau logo. Jika Anda kesulitan, tim kami
+                                siap membantu dalam penyusunan konten (copywriting) dengan biaya tambahan.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Apakah sudah termasuk domain dan hosting?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Ya, semua paket pembuatan website kami sudah termasuk gratis domain (.com, .id, dll) dan
+                                hosting berkualitas selama satu tahun pertama. Untuk tahun berikutnya, Anda hanya perlu
+                                membayar biaya perpanjangan yang terjangkau.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Bagaimana dengan layanan purna jual (after-sales)?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Kami berkomitmen untuk memberikan dukungan penuh kepada klien kami. Anda akan mendapatkan
+                                layanan maintenance dan konsultasi gratis selama periode tertentu. Tim support kami siap
+                                membantu jika Anda mengalami kendala teknis atau memiliki pertanyaan seputar pengelolaan
+                                website.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="team" class="section-light">
+            <div class="container">
+                <h2>Tim Profesional Kami</h2>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-image"><img src="https://i.imgur.com/6X2a2Gv.jpg" alt="Foto Jasman Maulana" />
+                        </div>
+                        <div class="team-content">
+                            <h3>Jasman Maulana</h3>
+                            <p class="team-role">Team Leader</p>
+                            <div class="team-socials">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-image"><img src="https://i.imgur.com/uG5sXb5.png" alt="Foto Muhammad Rayhan" />
+                        </div>
+                        <div class="team-content">
+                            <h3>Muhammad Rayhan</h3>
+                            <p class="team-role">Web Developer</p>
+                            <div class="team-socials">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="#" aria-label="Github"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-image"><img src="https://i.imgur.com/zL9jB9m.jpg"
+                                alt="Foto Juandris Mellolo" /></div>
+                        <div class="team-content">
+                            <h3>Juandris Mellolo</h3>
+                            <p class="team-role">Social Media Specialist</p>
+                            <div class="team-socials">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-image"><img src="https://i.imgur.com/wVQa5pW.jpg"
+                                alt="Foto Muhammad Luqman Hidayat" /></div>
+                        <div class="team-content">
+                            <h3>Muhammad Luqman Hidayat</h3>
+                            <p class="team-role">Software Quality Assurance</p>
+                            <div class="team-socials">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="#" aria-label="Github"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2>Hubungi Kami</h2>
+                <div class="contact-wrapper">
+                    <form class="contact-form" action="#" method="post">
+                        <h3>Kirim Pesan</h3>
+                        <input type="text" name="name" placeholder="Nama Anda" required>
+                        <input type="email" name="email" placeholder="Email Anda" required>
+                        <input type="text" name="subject" placeholder="Subjek" required>
+                        <textarea name="message" placeholder="Pesan Anda" required></textarea>
+                        <button type="submit" class="submit-btn">Kirim Pesan</button>
+                    </form>
+                    <div class="contact-info">
+                        <h3>Informasi Kontak</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Jl. Jenderal Sudirman Kav. 52-53, Jakarta Selatan</p>
+                        <p><i class="fas fa-envelope"></i> info@entwickler.id</p>
+                        <p><i class="fas fa-phone"></i> +62 812 3456 7890</p>
+                        <div class="map-container">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.242921319246!2d106.80413807498999!3d-6.231502493755437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f13fd6647209%3A0x251648a17688c22d!2sPacific%20Century%20Place!5e0!3m2!1sen!2sid!4v1695886971234!5m2!1sen!2sid"
+                                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-col footer-logo">
+                <img src="https://i.ibb.co/Cbf9rV7/unnamed.png" alt="Entwickler Logo">
+                <p>Entwickler Indonesia adalah mitra terpercaya Anda dalam membangun solusi digital yang inovatif dan
+                    efisien.</p>
+                <div class="social-icons" style="margin-top: 1.5rem;">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Layanan</h4>
+                <ul>
+                    <li><a href="#harga">Jasa Buat Website</a></li>
+                    <li><a href="#creative">Jasa Creative</a></li>
+                    <li><a href="#google-ads">Jasa Google Ads</a></li>
+                    <li><a href="#portfolio">Portofolio</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Tautan Cepat</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#team">Tim Kami</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Hubungi Kami</h4>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"
+                            style="margin-right: 10px; color: var(--entwickler-green);"></i> Jakarta, Indonesia</li>
+                    <li><i class="fas fa-envelope" style="margin-right: 10px; color: var(--entwickler-green);"></i>
+                        info@entwickler.id</li>
+                    <li><i class="fas fa-phone" style="margin-right: 10px; color: var(--entwickler-green);"></i> +62 812
+                        3456 7890</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© <span id="currentYear"></span> Entwickler Indonesia. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+
+    <a href="#home" class="back-to-top" aria-label="Kembali ke atas"><i class="fas fa-arrow-up"></i></a>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        // Kode dasar (Copyright, Navbar Scroll, Back to top, etc)
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => { window.scrollY > 50 ? navbar.classList.add('scrolled') : navbar.classList.remove('scrolled'); });
+        const backToTopButton = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => { window.scrollY > 300 ? backToTopButton.classList.add('visible') : backToTopButton.classList.remove('visible'); });
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.1 });
+        document.querySelectorAll('section, .footer').forEach(el => observer.observe(el));
+        const hamburger = document.querySelector('.hamburger-menu');
+        const navLinks = document.querySelector('.nav-links');
+        const navLinkItems = document.querySelectorAll('.nav-links li a');
+        const toggleMenu = () => { const icon = hamburger.querySelector('i'); navLinks.classList.toggle('nav-active'); icon.classList.toggle('fa-bars'); icon.classList.toggle('fa-times'); document.body.classList.toggle('no-scroll'); };
+        hamburger.addEventListener('click', toggleMenu);
+        navLinkItems.forEach(link => { link.addEventListener('click', () => { if (navLinks.classList.contains('nav-active')) { toggleMenu(); } }); });
+        const filterButtons = document.querySelectorAll('.portfolio-filters button');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        if (filterButtons.length > 0 && portfolioItems.length > 0) { filterButtons.forEach(button => { button.addEventListener('click', () => { filterButtons.forEach(btn => btn.classList.remove('active')); button.classList.add('active'); const filter = button.getAttribute('data-filter'); portfolioItems.forEach(item => { item.style.transform = 'scale(0)'; item.style.opacity = '0'; setTimeout(() => { if (item.classList.contains(filter.replace('.', '')) || filter === '*') { item.style.display = 'block'; setTimeout(() => { item.style.transform = 'scale(1)'; item.style.opacity = '1'; }, 50); } else { item.style.display = 'none'; } }, 400); }); }); }); }
+
+        // --- JAVASCRIPT BARU UNTUK FAQ & SLIDER ---
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // --- BAGIAN SLIDER (Sama seperti sebelumnya, sudah baik) ---
+            const swiperInstances = {};
+            document.querySelectorAll('.swiper').forEach(swiperEl => {
+                const swiperId = swiperEl.dataset.swiperId;
+                swiperInstances[swiperId] = new Swiper(swiperEl, {
+                    loop: false,
+                    slidesPerView: 1,
+                    spaceBetween: 30,
+                    navigation: {
+                        nextEl: swiperEl.parentElement.querySelector('.swiper-button-next'),
+                        prevEl: swiperEl.parentElement.querySelector('.swiper-button-prev'),
+                    },
+                    breakpoints: {
+                        768: { slidesPerView: 2 },
+                        1024: { slidesPerView: 3 }
+                    }
+                });
+            });
+            const tabButtons = document.querySelectorAll('.pricing-tabs .tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    button.classList.add('active');
+                    const activeTabContent = document.getElementById(button.dataset.tab);
+                    activeTabContent.classList.add('active');
+                    const activeSwiperId = button.dataset.tab;
+                    const activeSwiper = swiperInstances[activeSwiperId];
+                    if (activeSwiper) {
+                        setTimeout(() => {
+                            activeSwiper.update();
+                            activeSwiper.slideTo(0, 0);
+                        }, 10);
+                    }
+                });
+            });
+
+            // --- BAGIAN ACCORDION HARGA ---
+            const toggleButtons = document.querySelectorAll('.toggle-details-btn');
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const pricingCard = button.closest('.pricing-card');
+                    pricingCard.classList.toggle('expanded');
+                });
+            });
+
+            // --- JAVASCRIPT BARU UNTUK FAQ ACCORDION ---
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    const isOpen = item.classList.contains('active');
+
+                    // Tutup semua item lain
+                    faqItems.forEach(otherItem => {
+                        otherItem.classList.remove('active');
+                    });
+
+                    // Buka atau tutup item yang di-klik
+                    if (!isOpen) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+
+        });
+    </script>
+</body>
+
+</html>
